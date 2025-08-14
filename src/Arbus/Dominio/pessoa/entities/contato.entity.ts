@@ -4,7 +4,7 @@ import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
 
 
 
-@Entity({ name: 'Contato' })
+@Entity({ name: 'contato' })
 export class ContatoEntity extends _BaseEntityType {
 
   @Column()

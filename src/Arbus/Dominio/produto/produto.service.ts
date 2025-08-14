@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { InsProdutoGrupoEntradaDto } from './dto/grupoProduto/ins.produto-grupo.enrtada.dto';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRspostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
-import { ProdutoGrupoEntity } from './entities/produto/produto-grupo.entity';
+import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
 import { ProdutoEntity } from './entities/produto/produto.entity';
 
 @Injectable()
@@ -25,11 +25,11 @@ export class ProdutoService {
   async ObterTodosProdutos(): Promise<ProdutoRspostaEntityDto[]> {
     return this.produtoRepo.find()
   }
-  async ObterProduto(id: string): Promise<ProdutoRspostaEntityDto | null> {
-    return await this.produtoRepo.findOneBy({ id })
+  async ObterProduto(_id: string): Promise<ProdutoRspostaEntityDto | null> {
+    return await this.produtoRepo.findOneBy({ _id })
   }
-  async excluirProduto(id: string) {
-    return await this.produtoRepo.softDelete({ id })
+  async excluirProduto(_id: string) {
+    return await this.produtoRepo.softDelete({ _id })
   }
 
 
@@ -45,10 +45,10 @@ export class ProdutoService {
   async ObterTodosGruposDeProduto(): Promise<ProdutoGrupoEntity[]> {
     return this.produtoGrupoRepo.find()
   }
-  async ObterGrupoDeProduto(id: string): Promise<ProdutoGrupoEntity | null> {
-    return await this.produtoGrupoRepo.findOneBy({ id })
+  async ObterGrupoDeProduto(_id: string): Promise<ProdutoGrupoEntity | null> {
+    return await this.produtoGrupoRepo.findOneBy({ _id })
   }
-  async excluirGrupoDeProduto(id: string) {
-    return await this.produtoGrupoRepo.softDelete({ id })
+  async excluirGrupoDeProduto(_id: string) {
+    return await this.produtoGrupoRepo.softDelete({ _id })
   }
 }

@@ -3,39 +3,39 @@ import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 
 import { InsProdutoGrupoEntradaDto } from './dto/grupoProduto/ins.produto-grupo.enrtada.dto';
 import { InsProdutoGrupoRespostaDto } from './dto/grupoProduto/ins.produto-grupo.resposta.dto';
-import { ProdutoDto } from './dto/produto/produto.dto';
 import { UpdateProdutoInput } from './dto/produto/update-produto.input';
 import { ProdutoService } from './produto.service';
+import { ProdutoSchema } from './schema/produto.schema';
 
-@Resolver(() => ProdutoDto)
+@Resolver(() => ProdutoSchema)
 export class ProdutoResolver {
   constructor(
     private readonly produtoService: ProdutoService,
     // private readonly produtoGrupoService: ProdutoGrupoService
   ) { }
 
-  @Mutation(() => ProdutoDto)
+  @Mutation(() => ProdutoSchema)
   InserirNovoProduto(@Args('insProdutoEntraDto') insProdutoEntraDto: InsProdutoEntraDto) {
     console.log("insProdutoEntraDto", insProdutoEntraDto)
     return this.produtoService.inserirProduto(insProdutoEntraDto);
   }
 
-  @Query(() => [ProdutoDto], { name: 'produto' })
+  @Query(() => [ProdutoSchema], { name: 'produto' })
   findAll() {
     return [];
   }
 
-  @Query(() => ProdutoDto, { name: 'produto' })
+  @Query(() => ProdutoSchema, { name: 'produto' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return {};
   }
 
-  @Mutation(() => ProdutoDto)
+  @Mutation(() => ProdutoSchema)
   updateProduto(@Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
     return {};
   }
 
-  @Mutation(() => ProdutoDto)
+  @Mutation(() => ProdutoSchema)
   removeProduto(@Args('id', { type: () => Int }) id: number) {
     return {};
   }
@@ -43,8 +43,8 @@ export class ProdutoResolver {
   // **************
   // GRUPO DE PRODUTO
   // **************
-  // @Mutation(() => ProdutoDto)
-  // inseriNovoGrupoDeProduto(@Args('insProdutoGrupoDto') insProdutoGrupoDto: ProdutoDto) {
+  // @Mutation(() => ProdutoSchema)
+  // inseriNovoGrupoDeProduto(@Args('insProdutoGrupoDto') insProdutoGrupoDto: ProdutoSchema) {
   //   return {};//return this.produtoService.inserirGrupoDeProduto(insProdutoGrupoDto);
   // }
   @Mutation(() => InsProdutoGrupoRespostaDto)

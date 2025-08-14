@@ -3,7 +3,7 @@ import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
 
 
 
-@Entity({ name: 'Natureza_Juridica' })
+@Entity({ name: 'natureza_juridica' })
 export class NaturezaJuridicaEntity extends _BaseEntityType {
 
   @Column()

@@ -1,8 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _IDdto } from '../../comuns/interfaces/_ID.dto';
+import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
 
 @ObjectType()
-export class UsuarioDto extends _IDdto {
+export class UsuarioDto extends _BaseObjectTypeSchema {
 
   @Field()
   pnome: string;

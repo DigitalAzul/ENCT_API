@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { _IDdto } from '../../comuns/interfaces/_ID.dto';
+import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
 
 @InputType()
-export class InserirPessoaInputDto extends _IDdto {
+export class InserirPessoaInputDto extends _BaseObjectTypeSchema {
 
 
   @Field()

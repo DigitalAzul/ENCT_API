@@ -4,7 +4,7 @@ import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
 
 
 
-@Entity({ name: 'Endereco' })
+@Entity({ name: 'endereco' })
 export class EnderecoEntity extends _BaseEntityType {
 
   @Column()

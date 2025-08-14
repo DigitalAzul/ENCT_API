@@ -1,7 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export abstract class _IDdto {
+export abstract class _BaseObjectTypeSchema {
+
     @Field({ nullable: true })
     id: string;
 
@@ -18,5 +19,13 @@ export abstract class _IDdto {
 
     @Field({ nullable: true })
     atualizado_por_id?: string;
+
+
+    @Field({ nullable: true })
+    _excluido_em: Date
+
+
+    @Field({ nullable: true })
+    _excluido_por_id?: string;
 }
 

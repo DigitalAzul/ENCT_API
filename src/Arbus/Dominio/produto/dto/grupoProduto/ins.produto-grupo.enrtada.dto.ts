@@ -1,10 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { _IDdto } from '../../../comuns/interfaces/_ID.dto';
+import { _BaseObjectTypeSchema } from 'src/Arbus/Dominio/comuns/interfaces/_BaseSchemaType';
 
 
 
 @InputType()
-export class InsProdutoGrupoEntradaDto extends _IDdto {
+export class InsProdutoGrupoEntradaDto extends _BaseObjectTypeSchema {
 
 
   @Field()

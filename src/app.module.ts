@@ -7,14 +7,19 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ContatoEntity } from './Arbus/Dominio/pessoa/entities/contato.entity';
+import { EnderecoEntity } from './Arbus/Dominio/pessoa/entities/endereco.entity';
 import { NaturezaJuridicaEntity } from './Arbus/Dominio/pessoa/entities/natureza_juridica.entity';
+import { PessoasEntity } from './Arbus/Dominio/pessoa/entities/pessoa.entity';
 import { PessoaModule } from './Arbus/Dominio/pessoa/pessoa.module';
-import { ProdutoSubGrupoEntity } from './Arbus/Dominio/produto/entities/grupoProduto/produto-sub-grupo.entity';
-import { ProdutoGrupoEntity } from './Arbus/Dominio/produto/entities/produto/produto-grupo.entity';
-import { ProdutoMarcaEntity } from './Arbus/Dominio/produto/entities/produto/produto-marca.entity';
+import { ProdutoSubGrupoEntity } from './Arbus/Dominio/produto/entities/produto-grupo-sub/produto-sub-grupo.entity';
+import { ProdutoGrupoEntity } from './Arbus/Dominio/produto/entities/produto-grupo/produto-grupo.entity';
+import { ProdutoMarcaEntity } from './Arbus/Dominio/produto/entities/produto-marca/produto-marca.entity';
+import { ProdutoUnidadeMedidaEntity } from './Arbus/Dominio/produto/entities/produto-unidade-medida/produto-unidade-medida.entity';
+import { ProdutoUnidadeSiglaEntity } from './Arbus/Dominio/produto/entities/produto-unidade-sigla/produto-unidade-sigla.entity';
 import { ProdutoEntity } from './Arbus/Dominio/produto/entities/produto/produto.entity';
-import { ProdutoUnidadeMedidaEntity } from './Arbus/Dominio/produto/entities/unidadeMedidaProduto/produto-unidade-medida.entity';
 import { ProdutoModule } from './Arbus/Dominio/produto/produto.module';
+import { UsuarioEntity } from './Arbus/Dominio/usuario/entities/usuario.entity';
 import { UsuarioModule } from './Arbus/Dominio/usuario/usuario.module';
 
 
@@ -35,12 +40,17 @@ import { UsuarioModule } from './Arbus/Dominio/usuario/usuario.module';
       migrations: [__dirname + 'Arbus/Infra/migrations/{.ts}'],
       migrationsRun: true,
       entities: [
+        UsuarioEntity,
+        PessoasEntity,
         NaturezaJuridicaEntity,
+        EnderecoEntity,
+        ContatoEntity,
         ProdutoEntity,
         ProdutoGrupoEntity,
         ProdutoSubGrupoEntity,
         ProdutoMarcaEntity,
         ProdutoUnidadeMedidaEntity,
+        ProdutoUnidadeSiglaEntity,
         UsuarioModule
       ],
     }),

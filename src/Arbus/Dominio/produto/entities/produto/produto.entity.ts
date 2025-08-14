@@ -1,10 +1,27 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
+import { ProdutoGrupoEntity } from '../produto-grupo/produto-grupo.entity';
 
 
 
 @Entity({ name: 'produto' })
 export class ProdutoEntity extends _BaseEntityType {
+
+  @OneToOne(() => ProdutoGrupoEntity)
+  @JoinColumn()
+  grupo: ProdutoGrupoEntity
+
+  @Column()
+  produto_grupoId: string;
+
+
+  @OneToOne(() => ProdutoSubGrupoEntity)
+  @JoinColumn()
+  subgrupo: ProdutoSubGrupoEntity
+
+  @Column()
+  produto_sub_grupoId: string;
 
 
   @Column()
@@ -72,7 +89,7 @@ export class ProdutoEntity extends _BaseEntityType {
 
 
   @Column()
-  tipo_produto: string; // REVENDA | CONSUMO
+  tipo_produto: string; // REVENDA | CONSUMO fazer outra tabela
 
 
   @Column()

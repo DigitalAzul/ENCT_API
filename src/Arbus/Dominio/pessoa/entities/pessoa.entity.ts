@@ -4,8 +4,8 @@ import { NaturezaJuridicaEntity } from './natureza_juridica.entity';
 
 
 
-@Entity({ name: 'Pessoa' })
-export class PessoaEntity extends _BaseEntityType {
+@Entity({ name: 'pessoas' })
+export class PessoasEntity extends _BaseEntityType {
 
   @Column()
   filial: boolean;

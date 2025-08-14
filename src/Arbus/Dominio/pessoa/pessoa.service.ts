@@ -4,14 +4,14 @@ import { Repository } from 'typeorm';
 import { UpdatePessoaInputDto } from './dto/alt.pessoa.input.dto';
 import { InserirPessoaInputDto } from './dto/ins.pessoa.input.dto';
 import { PessoaRespostaEntityDto } from './dto/pessoa.resposta.entity.dto';
-import { PessoaEntity } from './entities/pessoa.entity';
+import { PessoasEntity } from './entities/pessoa.entity';
 
 
 @Injectable()
 export class PessoaService {
   constructor(
-    @InjectRepository(PessoaEntity)
-    private pessoaRepository: Repository<PessoaEntity>,
+    @InjectRepository(PessoasEntity)
+    private pessoaRepository: Repository<PessoasEntity>,
   ) { }
 
 
@@ -23,7 +23,7 @@ export class PessoaService {
   findAll(): Promise<PessoaRespostaEntityDto[]> {
     return this.pessoaRepository.find({
       order: {
-        id: {
+        _id: {
           direction: "DESC"
         }
       }
