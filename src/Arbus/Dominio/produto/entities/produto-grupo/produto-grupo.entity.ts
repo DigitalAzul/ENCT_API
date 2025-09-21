@@ -14,20 +14,13 @@ export class ProdutoGrupoEntity extends _BaseEntityType {
 
 
   @Column()
-  codigo_grupo_produtoId: string;
-
-
-  @Column()
-  codigo_grupo_produto: string;
+  titulo: string;
 
 
   @Column()
   descricao: string;
 
-
-  @Column()
-  imagem: string;
-
-
-
 }
+
+// @Column()
+// codigo_grupo_produto: string;

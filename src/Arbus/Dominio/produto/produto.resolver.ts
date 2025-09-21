@@ -1,7 +1,7 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 
-import { InsProdutoGrupoEntradaDto } from './dto/grupoProduto/ins.produto-grupo.enrtada.dto';
+import { InsProdutoGrupoEntradaDto } from './dto/grupoProduto/ins.produto-grupo.entrada.dto';
 import { InsProdutoGrupoRespostaDto } from './dto/grupoProduto/ins.produto-grupo.resposta.dto';
 import { UpdateProdutoInput } from './dto/produto/update-produto.input';
 import { ProdutoService } from './produto.service';

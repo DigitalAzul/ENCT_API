@@ -8,8 +8,14 @@ export class ProdutoSubGrupoEntity extends _BaseEntityType {
 
 
   @Column()
+  titulo: string;
+
+  @Column()
   descricao: string;
 
+
+  @Column()
+  grupo_produtoId: string;
 
 
 

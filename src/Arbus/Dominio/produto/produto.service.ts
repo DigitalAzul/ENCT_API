@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { InsProdutoGrupoEntradaDto } from './dto/grupoProduto/ins.produto-grupo.enrtada.dto';
+import { InsProdutoGrupoEntradaDto } from './dto/grupoProduto/ins.produto-grupo.entrada.dto';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRspostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
 import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';

@@ -8,6 +8,9 @@ export class ProdutoMarcaEntity extends _BaseEntityType {
 
 
   @Column()
+  titulo: string;
+
+  @Column()
   descricao: string;
 
 
