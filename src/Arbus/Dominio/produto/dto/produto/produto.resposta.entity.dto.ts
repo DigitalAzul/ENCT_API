@@ -27,11 +27,11 @@ export class ProdutoRspostaEntityDto extends _BaseEntityType {
 
 
   @Column()
-  grupo_produto_id: string;
+  produto_grupoId: string;
 
 
   @Column()
-  sub_grupo_produto_id: string;
+  produto_sub_grupoId: string;
 
 
   @Column()

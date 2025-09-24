@@ -40,7 +40,9 @@ export class ProdutoService {
   // **************************************************************
 
   async inserirGrupoDeProduto(insProdutoGrupoDto: InsProdutoGrupoEntradaDto): Promise<ProdutoGrupoEntity> {
-    return this.produtoGrupoRepo.create(insProdutoGrupoDto)
+    const x = this.produtoGrupoRepo.create(insProdutoGrupoDto)
+    console.log('insProdutoGrupoDto', insProdutoGrupoDto, x)
+    return this.produtoGrupoRepo.save(x)
   }
   async ObterTodosGruposDeProduto(): Promise<ProdutoGrupoEntity[]> {
     return this.produtoGrupoRepo.find()

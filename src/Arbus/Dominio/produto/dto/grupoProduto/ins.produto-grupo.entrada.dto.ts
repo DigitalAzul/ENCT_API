@@ -8,23 +8,19 @@ export class InsProdutoGrupoEntradaDto extends _BaseObjectTypeSchema {
 
 
   @Field()
-  CodigoGrupoProduto: string;
+  titulo: string;
 
 
   @Field()
-  Descricao: string;
+  descricao: string;
 
 
-  @Field()
-  Imagem: string;
+  // @Field()
+  // AlteracaoUsuario: string;
 
 
-  @Field()
-  AlteracaoUsuario: string;
-
-
-  @Field()
-  AlteracaoDataHora: string;
+  // @Field()
+  // AlteracaoDataHora: string;
 
 
 }

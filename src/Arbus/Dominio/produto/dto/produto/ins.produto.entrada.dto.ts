@@ -24,11 +24,21 @@ export class InsProdutoEntraDto {
 
 
   @Field()
-  grupo_produto_id: string;
+  produto_grupoId: string;
 
 
   @Field()
-  sub_grupo_produto_id: string;
+  produto_sub_grupoId: string;
+
+
+
+
+  // @Field()
+  // grupo_produto_id: string;
+
+
+  // @Field()
+  // sub_grupo_produto_id: string;
 
 
   @Field()

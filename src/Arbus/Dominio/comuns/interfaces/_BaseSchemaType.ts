@@ -4,21 +4,21 @@ import { Field, ObjectType } from '@nestjs/graphql';
 export abstract class _BaseObjectTypeSchema {
 
     @Field({ nullable: true })
-    id: string;
+    _id: string;
 
-    @Field()
-    criado_em: Date;
+    @Field({ nullable: true })
+    _criado_em: Date;
 
-    @Field()
-    criado_por_id: string;
+    @Field({ nullable: true })
+    _criado_por_id: string;
 
 
     @Field({ nullable: true })
-    atualizado_em: Date;
+    _atualizado_em: Date;
 
 
     @Field({ nullable: true })
-    atualizado_por_id?: string;
+    _atualizado_por_id?: string;
 
 
     @Field({ nullable: true })

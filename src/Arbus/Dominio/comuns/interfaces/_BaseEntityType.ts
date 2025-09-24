@@ -33,6 +33,7 @@ export abstract class _BaseEntityType {
     @BeforeInsert()
     updateDates() {
         this._id = ulid()
+        this._criado_por_id = 'dazl'
     }
 }
 

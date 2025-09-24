@@ -44,12 +44,12 @@ export class ProdutoEntity extends _BaseEntityType {
   data_validade_licenca_anvisa: string;
 
 
-  @Column()
-  grupo_produto_id: string;
+  // @Column()
+  // grupo_produto_id: string;
 
 
-  @Column()
-  sub_grupo_produto_id: string;
+  // @Column()
+  // sub_grupo_produto_id: string;
 
 
   @Column()
