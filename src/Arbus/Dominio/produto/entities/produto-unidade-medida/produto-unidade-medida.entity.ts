@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { ProdutoUnidadeSiglaEntity } from '../produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity';
 
 
 
@@ -7,13 +8,26 @@ import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 export class ProdutoUnidadeMedidaEntity extends _BaseEntityType {
 
 
+  @OneToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @JoinColumn({ name: 'sigla_unidade_primariaId' })
+  sigla_primaria: ProdutoUnidadeSiglaEntity
+
+  @Column()
+  sigla_unidade_primariaId: string;
+
+
+  @OneToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @JoinColumn({ name: 'sigla_unidade_secundariaId' })
+  sigla_secundaria: ProdutoUnidadeSiglaEntity
+
+  @Column()
+  sigla_unidade_secundariaId: string;
+
+
+
+
   @Column()
   descricao: string;
-
-
-  @Column()
-  sigla_unidade_primaria_id: string;
-
 
   @Column({ type: 'float' })
   fator_conversao_primaria: number; // define o valor de multiplacação entre unidades primaria
@@ -21,10 +35,6 @@ export class ProdutoUnidadeMedidaEntity extends _BaseEntityType {
 
   @Column()
   ha_segunda_unidade: boolean;
-
-
-  @Column()
-  sigla_unidade_secundaria_id: string;
 
 
   @Column({ type: 'float' })

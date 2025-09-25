@@ -34,7 +34,7 @@ export class PessoaService {
     return {};
   }
 
-  update(id: string, updatePessoaInput: UpdatePessoaInputDto) {
+  update(_id: string, updatePessoaInput: UpdatePessoaInputDto) {
     return {};
   }
 

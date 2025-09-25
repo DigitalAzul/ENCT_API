@@ -4,7 +4,7 @@ import { _BaseObjectTypeSchema } from 'src/Arbus/Dominio/comuns/interfaces/_Base
 
 
 @InputType()
-export class InsProdutoGrupoEntradaDto extends _BaseObjectTypeSchema {
+export class InserirGrupoProdutoDto extends _BaseObjectTypeSchema {
 
 
   @Field()
@@ -13,14 +13,5 @@ export class InsProdutoGrupoEntradaDto extends _BaseObjectTypeSchema {
 
   @Field()
   descricao: string;
-
-
-  // @Field()
-  // AlteracaoUsuario: string;
-
-
-  // @Field()
-  // AlteracaoDataHora: string;
-
 
 }

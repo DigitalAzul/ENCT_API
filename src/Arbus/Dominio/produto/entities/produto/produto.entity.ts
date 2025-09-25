@@ -2,6 +2,7 @@ import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
 import { ProdutoGrupoEntity } from '../produto-grupo/produto-grupo.entity';
+import { ProdutoUnidadeMedidaEntity } from '../produto-unidade-medida/produto-unidade-medida.entity';
 
 
 
@@ -22,6 +23,16 @@ export class ProdutoEntity extends _BaseEntityType {
 
   @Column()
   produto_sub_grupoId: string;
+
+
+  @OneToOne(() => ProdutoUnidadeMedidaEntity)
+  @JoinColumn()
+  unidade_medida: ProdutoUnidadeMedidaEntity
+
+  @Column()
+  unidade_medidaId: string;
+
+
 
 
   @Column()

@@ -4,27 +4,16 @@ import { _BaseObjectTypeSchema } from 'src/Arbus/Dominio/comuns/interfaces/_Base
 
 
 @ObjectType()
-export class InsProdutoGrupoRespostaDto extends _BaseObjectTypeSchema {
+export class InserirProdutoGrupoRespostaDto extends _BaseObjectTypeSchema {
 
 
   @Field()
-  CodigoGrupoProduto: string;
+  titulo: string;
 
 
   @Field()
   Descricao: string;
 
-
-  @Field()
-  Imagem: string;
-
-
-  @Field()
-  AlteracaoUsuario: string;
-
-
-  @Field()
-  AlteracaoDataHora: string;
 
 
 }

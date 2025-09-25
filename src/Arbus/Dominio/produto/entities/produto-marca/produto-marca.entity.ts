@@ -13,9 +13,4 @@ export class ProdutoMarcaEntity extends _BaseEntityType {
   @Column()
   descricao: string;
 
-
-  @Column()
-  imagem: string;
-
-
 }
