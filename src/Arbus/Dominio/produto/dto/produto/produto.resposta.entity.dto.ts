@@ -4,7 +4,7 @@ import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 
 
 @Entity()
-export class ProdutoRspostaEntityDto extends _BaseEntityType {
+export class ProdutoRespostaEntityDto extends _BaseEntityType {
 
   @Column()
   codigo_produto: string;

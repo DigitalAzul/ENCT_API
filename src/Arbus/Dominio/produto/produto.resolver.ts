@@ -15,6 +15,7 @@ import { GrupoProdutoService } from './grupoProduto.service';
 import { MarcaProdutoService } from './marcaProduto.service';
 import { ProdutoService } from './produto.service';
 import { GrupoProdutoSchema } from './schema/grupoProduto.schema';
+import { SubGrupoProdutoSchema } from './schema/grupoSubGrupoProduto.schema';
 import { MarcaProdutoSchema } from './schema/marcaProduto.schema';
 import { ProdutoSchema } from './schema/produto.schema';
 import { SiglaUnidadeMedidaProdutoSchema } from './schema/siglaUnidadeMedidaProduto.schema';
@@ -37,28 +38,28 @@ export class ProdutoResolver {
   ) { }
 
   @Mutation(() => ProdutoSchema)
-  CriarNovoProduto(@Args('insProdutoEntraDto') insProdutoEntraDto: InsProdutoEntraDto) {
+  Produto_Novo(@Args('insProdutoEntraDto') insProdutoEntraDto: InsProdutoEntraDto) {
     console.log("insProdutoEntraDto", insProdutoEntraDto)
     return this.produtoService.inserirProduto(insProdutoEntraDto);
   }
 
-  @Query(() => [ProdutoSchema], { name: 'produto' })
+  @Query(() => [ProdutoSchema], { name: 'Produto_Todos' })
   findAll() {
     return [];
   }
 
-  @Query(() => ProdutoSchema, { name: 'produto' })
+  @Query(() => ProdutoSchema, { name: 'Produto_PorID' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return {};
   }
 
   @Mutation(() => ProdutoSchema)
-  updateProduto(@Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
+  Produto_Edicao(@Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
     return {};
   }
 
   @Mutation(() => ProdutoSchema)
-  removeProduto(@Args('id', { type: () => Int }) id: number) {
+  Produto_Remover(@Args('id', { type: () => Int }) id: number) {
     return {};
   }
 
@@ -71,10 +72,10 @@ export class ProdutoResolver {
   // GRUPO DE PRODUTO
   // **************
   @Mutation(() => InserirProdutoGrupoRespostaDto)
-  CriarNovoGrupoDeProduto(@Args('insProdutoGrupoDto') insProdutoGrupoInput: InserirGrupoProdutoDto) {
+  Produto_Grupo_Novo(@Args('insProdutoGrupoDto') insProdutoGrupoInput: InserirGrupoProdutoDto) {
     return this.grupoProdutoService.create(insProdutoGrupoInput);
   }
-  @Query(() => [GrupoProdutoSchema], { name: 'ListarTodosGruposDeProdutos', nullable: true })
+  @Query(() => [GrupoProdutoSchema], { name: 'Produto_Grupos', nullable: true })
   async findManyGrupoProduto() {
     return await this.grupoProdutoService.findMany();
   }
@@ -85,10 +86,10 @@ export class ProdutoResolver {
   // SUB GRUPO DE PRODUTO
   // **************
   @Mutation(() => InserirSubGrupoProdutoRespostaDto)
-  CriarNovoSubGrupoDeProduto(@Args('inserirSubGrupoProdutoDto') subGrupoProdutoGrupoInput: InserirSubGrupoProdutoDto) {
+  Produto_SubGrupo_Novo(@Args('inserirSubGrupoProdutoDto') subGrupoProdutoGrupoInput: InserirSubGrupoProdutoDto) {
     return this.subGrupoProdutoService.create(subGrupoProdutoGrupoInput);
   }
-  @Query(() => [MarcaProdutoSchema], { name: 'ListarTodosSubGruposDeProdutos', nullable: true })
+  @Query(() => [SubGrupoProdutoSchema], { name: 'Produto_SubGrupos', nullable: true })
   async findManySubGrupoProduto() {
     return await this.subGrupoProdutoService.findMany();
   }
@@ -113,9 +114,13 @@ export class ProdutoResolver {
     return await this.siglaUnidadeMedidaProdutoService.findOneById(_id);
 
   }
-  @Query(() => [SiglaUnidadeMedidaProdutoSchema], { name: 'ListatTodasSiglasUnidadeMedidaDeProduto', nullable: true })
+  @Query(() => [SiglaUnidadeMedidaProdutoSchema], { name: 'ListarTodasSiglasUnidadeMedidaDeProduto', nullable: true })
   async findManySiglaUnidadeMedidaProduto() {
+    async function sleep(ms: number) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
     return await this.siglaUnidadeMedidaProdutoService.findMany();
+
   }
 
 
@@ -144,7 +149,7 @@ export class ProdutoResolver {
   CriarNovaMarcaDeProduto(@Args('InserirMarcaProdutoDto') inserirMarcaProdutoDto: InserirMarcaProdutoDto) {
     return this.marcaProdutoService.create(inserirMarcaProdutoDto);
   }
-  @Query(() => [MarcaProdutoSchema], { name: 'ListarTodasMarcasDeProdutos', nullable: true })
+  @Query(() => [MarcaProdutoSchema], { name: 'Produto_Marcas', nullable: true })
   async findManyMarcaProduto() {
     return await this.marcaProdutoService.findMany();
   }

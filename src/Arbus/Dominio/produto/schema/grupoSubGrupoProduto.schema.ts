@@ -4,11 +4,11 @@ import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
 
 
 @ObjectType()
-export class SiglaUnidadeMedidaProdutoSchema extends _BaseObjectTypeSchema {
+export class SubGrupoProdutoSchema extends _BaseObjectTypeSchema {
 
 
   @Field()
-  sigla: string;
+  titulo: string;
 
 
   @Field()

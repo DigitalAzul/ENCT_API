@@ -25,7 +25,9 @@ export class SiglaUnidadeMedidaProdutoService {
 
   async findMany(): Promise<SiglaUnidadeMedidaProdutoRespostaEntityDto[]> {
     try {
-      return this.produtoUnidadeSiglaRepo.find()
+      const a = await this.produtoUnidadeSiglaRepo.find()
+
+      return a
     } catch (error) {
       return []
     }

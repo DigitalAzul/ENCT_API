@@ -13,6 +13,14 @@ export class UsuarioEntity extends _BaseEntityType {
 
 
   @Column()
-  role: string;
+  segredo: string;
+
+
+  @Column()
+  email: string;
+
+
+  @Column()
+  roleId: string;
 
 }

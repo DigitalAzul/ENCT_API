@@ -45,3 +45,7 @@ export class PessoasEntity extends _BaseEntityType {
   cnae: string;
 
 }
+
+
+@Entity()
+export class PessoaEntityCreateRxDto extends PessoasEntity { }

@@ -12,7 +12,7 @@ export class MarcaProdutoSchema extends _BaseObjectTypeSchema {
 
 
   @Field()
-  Descricao: string;
+  descricao: string;
 
 
 }

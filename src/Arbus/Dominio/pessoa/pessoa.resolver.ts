@@ -1,6 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { InserirPessoaInputDto } from './dto/ins.pessoa.input.dto';
 
+import { _Filtering, _Pagination, _Sorting } from '../comuns/paginacao/paginationParams';
+import { PaginatedResponse } from '../comuns/paginacao/returnDTO';
 import { UpdatePessoaInputDto } from './dto/alt.pessoa.input.dto';
 import { PessoaDto } from './dto/pessoa.dto';
 import { PessoaService } from './pessoa.service';
@@ -14,6 +16,11 @@ export class PessoaResolver {
     console.log('inserirPessoaInput', inserirPessoaInput)
     return this.pessoaService.create(inserirPessoaInput);
   }
+
+  //
+  // FALTA O QUERY BUILDER
+  // https://dev.to/mgustus/filtering-graphql-query-using-typescript-and-typeorm-2l49
+  //
 
   @Query(() => [PessoaDto], { name: 'ListarTodasPessoas' })
   findAll() {
@@ -33,5 +40,15 @@ export class PessoaResolver {
   @Mutation(() => PessoaDto)
   RemovaEstaPessoa(@Args('id', { type: () => String }) id: string) {
     return this.pessoaService.remove(id);
+  }
+
+  @Query(() => PaginatedResponse, { name: 'Paginacao' })
+  Paginar(
+    @Args('PaginationParams', { type: () => _Pagination }) pagination: _Pagination,
+    @Args('SortingParams', { type: () => _Sorting }) sort: _Sorting,
+    @Args('FilteringParams', { type: () => _Filtering }) filter: _Filtering,
+  ) {
+    console.log(pagination, sort, filter)
+    return this.pessoaService.paginacao(pagination, sort, filter);
   }
 }
