@@ -1,5 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { PRODUTO_CLASSIFICACAO_ENUN } from '../../entities/produto-classificacoa/produto-classificacao-enum';
 
 
 
@@ -35,7 +36,7 @@ export class ProdutoRespostaEntityDto extends _BaseEntityType {
 
 
   @Column()
-  marca_produto_id: string;
+  produto_marcaId: string;
 
 
   @Column()
@@ -71,7 +72,7 @@ export class ProdutoRespostaEntityDto extends _BaseEntityType {
 
 
   @Column()
-  tipo_produto: string;
+  classificacao: PRODUTO_CLASSIFICACAO_ENUN;
 
 
   @Column()

@@ -14,11 +14,13 @@ import { InserirUnidadeMedidaProdutoDto } from './dto/unidadeMedidaProduto/inser
 import { GrupoProdutoService } from './grupoProduto.service';
 import { MarcaProdutoService } from './marcaProduto.service';
 import { ProdutoService } from './produto.service';
+import { ClassificacaoProdutoSchema } from './schema/classificacaoProduto.schema';
 import { GrupoProdutoSchema } from './schema/grupoProduto.schema';
 import { SubGrupoProdutoSchema } from './schema/grupoSubGrupoProduto.schema';
 import { MarcaProdutoSchema } from './schema/marcaProduto.schema';
 import { ProdutoSchema } from './schema/produto.schema';
 import { SiglaUnidadeMedidaProdutoSchema } from './schema/siglaUnidadeMedidaProduto.schema';
+import { SituacaoProdutoSchema } from './schema/situacaoProduto.schema';
 import { UnidadeMedidaProdutoSchema } from './schema/unidadeMedidaProduto.schema';
 import { SiglaUnidadeMedidaProdutoService } from './siglaUnidadeMedidaProduto.service';
 import { SubGrupoProdutoService } from './subGrupoProduto.service';
@@ -43,9 +45,9 @@ export class ProdutoResolver {
     return this.produtoService.inserirProduto(insProdutoEntraDto);
   }
 
-  @Query(() => [ProdutoSchema], { name: 'Produto_Todos' })
-  findAll() {
-    return [];
+  @Query(() => [ProdutoSchema], { name: 'Produtos' })
+  todos() {
+    return this.produtoService.ObterTodosProdutos()
   }
 
   @Query(() => ProdutoSchema, { name: 'Produto_PorID' })
@@ -152,6 +154,23 @@ export class ProdutoResolver {
   @Query(() => [MarcaProdutoSchema], { name: 'Produto_Marcas', nullable: true })
   async findManyMarcaProduto() {
     return await this.marcaProdutoService.findMany();
+  }
+
+
+  // **************
+  // SITUACAO PRODUTO
+  // **************
+  @Query(() => [SituacaoProdutoSchema], { name: 'Produto_Situacao' })
+  async findSituacaoProduto() {
+    return await this.produtoService.situacaoProduto();
+  }
+
+  // **************
+  // CLASSIFICACAO PRODUTO
+  // **************
+  @Query(() => [ClassificacaoProdutoSchema], { name: 'Produto_Classificacao' })
+  async findClassificacaoProduto() {
+    return await this.produtoService.classificacaoProduto();
   }
 
 }

@@ -2,8 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { SITUACAO_PRODUTO } from '../comuns/types/TProduto';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRespostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
+import { PRODUTO_CLASSIFICACAO_ENUN } from './entities/produto-classificacoa/produto-classificacao-enum';
 import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
 import { ProdutoEntity } from './entities/produto/produto.entity';
 
@@ -29,6 +31,22 @@ export class ProdutoService {
   }
   async excluirProduto(_id: string) {
     return await this.produtoRepo.softDelete({ _id })
+  }
+  async classificacaoProduto() {
+    const a = [
+      { value: PRODUTO_CLASSIFICACAO_ENUN.REVENDA, label: PRODUTO_CLASSIFICACAO_ENUN.REVENDA },
+      { value: PRODUTO_CLASSIFICACAO_ENUN.CONSUMO, label: PRODUTO_CLASSIFICACAO_ENUN.CONSUMO }
+    ]
+    return a
+
+  }
+  async situacaoProduto() {
+    const a = [
+      { value: SITUACAO_PRODUTO.ATIVO, label: SITUACAO_PRODUTO.ATIVO },
+      { value: SITUACAO_PRODUTO.INATIVO, label: SITUACAO_PRODUTO.INATIVO }
+    ]
+    return a
+
   }
 
 

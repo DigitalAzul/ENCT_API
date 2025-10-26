@@ -1,38 +1,64 @@
+import { SITUACAO_PRODUTO } from 'src/Arbus/Dominio/comuns/types/TProduto';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { PRODUTO_CLASSIFICACAO_ENUN } from '../produto-classificacoa/produto-classificacao-enum';
 import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
 import { ProdutoGrupoEntity } from '../produto-grupo/produto-grupo.entity';
-import { ProdutoUnidadeMedidaEntity } from '../produto-unidade-medida/produto-unidade-medida.entity';
+import { ProdutoMarcaEntity } from '../produto-marca/produto-marca.entity';
+import { ProdutoUnidadeSiglaEntity } from '../produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity';
 
 
 
 @Entity({ name: 'produto' })
 export class ProdutoEntity extends _BaseEntityType {
 
-  @OneToOne(() => ProdutoGrupoEntity)
-  @JoinColumn()
+  @OneToOne(() => ProdutoGrupoEntity, { eager: true })
+  @JoinColumn({ name: 'produto_grupoId' })
   grupo: ProdutoGrupoEntity
 
   @Column()
   produto_grupoId: string;
 
 
-  @OneToOne(() => ProdutoSubGrupoEntity)
-  @JoinColumn()
+  @OneToOne(() => ProdutoSubGrupoEntity, { eager: true })
+  @JoinColumn({ name: 'produto_sub_grupoId' })
   subgrupo: ProdutoSubGrupoEntity
 
   @Column()
   produto_sub_grupoId: string;
 
 
-  @OneToOne(() => ProdutoUnidadeMedidaEntity)
-  @JoinColumn()
-  unidade_medida: ProdutoUnidadeMedidaEntity
+  @OneToOne(() => ProdutoMarcaEntity, { eager: true })
+  @JoinColumn({ name: 'produto_marcaId' })
+  marca: ProdutoMarcaEntity
 
   @Column()
-  unidade_medidaId: string;
+  produto_marcaId: string;
 
 
+  // UNIDADE DE MEDIDA
+  @OneToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @JoinColumn({ name: 'sigla_unidade_primariaId' })
+  sigla_primaria: ProdutoUnidadeSiglaEntity
+
+  @Column()
+  sigla_unidade_primariaId: string;
+
+  @OneToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @JoinColumn({ name: 'sigla_unidade_secundariaId' })
+  sigla_secundaria: ProdutoUnidadeSiglaEntity
+
+  @Column()
+  sigla_unidade_secundariaId: string;
+
+  @Column({ type: 'float' })
+  fator_conversao_primaria: number; // define o valor de multiplacação entre unidades primaria
+
+  @Column()
+  ha_segunda_unidade: boolean;
+
+  @Column({ type: 'float' })
+  fator_conversao_secundaria: number; // define o valor de multiplacação entre unidades secundaria
 
 
   @Column()
@@ -53,18 +79,6 @@ export class ProdutoEntity extends _BaseEntityType {
 
   @Column()
   data_validade_licenca_anvisa: string;
-
-
-  // @Column()
-  // grupo_produto_id: string;
-
-
-  // @Column()
-  // sub_grupo_produto_id: string;
-
-
-  @Column()
-  marca_produto_id: string;
 
 
   @Column()
@@ -96,15 +110,19 @@ export class ProdutoEntity extends _BaseEntityType {
 
 
   @Column()
-  situacao: string; // perguntar
+  situacao: SITUACAO_PRODUTO; // perguntar
 
 
   @Column()
-  tipo_produto: string; // REVENDA | CONSUMO fazer outra tabela
+  classificacao: PRODUTO_CLASSIFICACAO_ENUN; // REVENDA | CONSUMO fazer outra tabela
 
 
   @Column()
   temp_max_conservacao: string;
+
+
+  @Column()
+  temp_min_conservacao: string;
 
 
 

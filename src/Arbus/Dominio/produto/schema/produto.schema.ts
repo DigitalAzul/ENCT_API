@@ -1,8 +1,32 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
+import { SITUACAO_PRODUTO } from '../../comuns/types/TProduto';
+import { PRODUTO_CLASSIFICACAO_ENUN } from '../entities/produto-classificacoa/produto-classificacao-enum';
 
 @ObjectType()
 export class ProdutoSchema extends _BaseObjectTypeSchema {
+
+
+  @Field()
+  produto_grupoId: string;
+
+  @Field()
+  produto_sub_grupoId: string;
+
+  @Field()
+  sigla_unidade_primariaId: string;
+
+  @Field()
+  sigla_unidade_secundariaId: string;
+
+  @Field()
+  fator_conversao_primaria: number;
+
+  @Field()
+  ha_segunda_unidade: boolean;
+
+  @Field()
+  fator_conversao_secundaria: number;
 
   @Field()
   codigo_produto: string;
@@ -25,15 +49,7 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
 
 
   @Field()
-  grupo_produto_id: string;
-
-
-  @Field()
-  sub_grupo_produto_id: string;
-
-
-  @Field()
-  marca_produto_id: string;
+  produto_marcaId: string;
 
 
   @Field()
@@ -53,7 +69,7 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
 
 
   @Field()
-  referencia: string; // perguntar
+  referencia: string; 
 
 
   @Field()
@@ -65,16 +81,19 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
 
 
   @Field()
-  situacao: string;
+  situacao: SITUACAO_PRODUTO; 
 
 
   @Field()
-  tipo_produto: string;
+  classificacao: PRODUTO_CLASSIFICACAO_ENUN; 
 
 
   @Field()
   temp_max_conservacao: string;
 
+
+  @Field()
+  temp_min_conservacao: string;
 
 
 }
