@@ -2,7 +2,7 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 
 import { InserirProdutoGrupoRespostaDto } from './dto/grupoProduto/inserirGrupoProdutoResposta.dto';
-import { InserirGrupoProdutoDto } from './dto/grupoProduto/inserirGrupoPtoduto.dto';
+import { InserirGrupoProdutoArgs } from './dto/grupoProduto/inserirGrupoPtoduto.dto';
 import { UpdateProdutoInput } from './dto/produto/update-produto.input';
 import { InserirSiglaUnidadeMedidaProdutoDto } from './dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto';
 
@@ -74,7 +74,7 @@ export class ProdutoResolver {
   // GRUPO DE PRODUTO
   // **************
   @Mutation(() => InserirProdutoGrupoRespostaDto)
-  Produto_Grupo_Novo(@Args('insProdutoGrupoDto') insProdutoGrupoInput: InserirGrupoProdutoDto) {
+  Produto_Grupo_Novo(@Args('insProdutoGrupoDto') insProdutoGrupoInput: InserirGrupoProdutoArgs) {
     return this.grupoProdutoService.create(insProdutoGrupoInput);
   }
   @Query(() => [GrupoProdutoSchema], { name: 'Produto_Grupos', nullable: true })

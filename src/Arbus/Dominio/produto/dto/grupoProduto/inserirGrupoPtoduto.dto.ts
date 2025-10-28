@@ -15,3 +15,15 @@ export class InserirGrupoProdutoDto extends _BaseObjectTypeSchema {
   descricao: string;
 
 }
+@InputType()
+export class InserirGrupoProdutoArgs {
+
+
+  @Field()
+  titulo: string;
+
+
+  @Field()
+  descricao: string;
+
+}

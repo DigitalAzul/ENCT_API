@@ -1,11 +1,15 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
-import { SITUACAO_PRODUTO } from '../../comuns/types/TProduto';
+import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../comuns/types/Produto.types';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../entities/produto-classificacoa/produto-classificacao-enum';
 
 @ObjectType()
 export class ProdutoSchema extends _BaseObjectTypeSchema {
 
+
+
+  @Field()
+  produto_marcaId: string;
 
   @Field()
   produto_grupoId: string;
@@ -17,83 +21,71 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
   sigla_unidade_primariaId: string;
 
   @Field()
-  sigla_unidade_secundariaId: string;
-
-  @Field()
-  fator_conversao_primaria: number;
+  fator_conversao_primaria: number; 
 
   @Field()
   ha_segunda_unidade: boolean;
 
   @Field()
-  fator_conversao_secundaria: number;
-
-  @Field()
   codigo_produto: string;
-
-
-  @Field()
-  codigo_ncm: string;
-
-
-  @Field()
-  codigo_rms: string;
-
 
   @Field()
   licenca_anvisa_num: string;
 
-
   @Field()
   data_validade_licenca_anvisa: string;
 
+  @Field()
+  referencia: string;
 
   @Field()
-  produto_marcaId: string;
-
-
-  @Field()
-  descricao: string;
-
+  peso_bruto: number;
 
   @Field()
-  descricao_tecnica: string;
-
-
-  @Field()
-  observacoes: string;
-
+  peso_liquido: number;
 
   @Field()
-  imagem: string;
-
-
-  @Field()
-  referencia: string; 
-
+  situacao: SITUACAO_PRODUTO;
 
   @Field()
-  peso_bruto: string;
-
-
-  @Field()
-  peso_liquido: string;
-
+  classificacao: PRODUTO_CLASSIFICACAO_ENUN;
 
   @Field()
-  situacao: SITUACAO_PRODUTO; 
+  escala_temperatura: ESCALA_TEMRATURA_ENUM;
 
+  @Field({ nullable: true })
+  sigla_unidade_secundariaId?: string;
 
-  @Field()
-  classificacao: PRODUTO_CLASSIFICACAO_ENUN; 
+  @Field({ nullable: true })
+  fator_conversao_secundaria?: number;
 
+  //
+  // NAO OBRIGATORIOS
+  //
+  @Field({ nullable: true })
+  codigo_ncm?: string;
 
-  @Field()
-  temp_max_conservacao: string;
+  @Field({ nullable: true })
+  codigo_rms?: string;
 
+  @Field({ nullable: true })
+  descricao?: string;
 
-  @Field()
-  temp_min_conservacao: string;
+  @Field({ nullable: true })
+  descricao_tecnica?: string;
+
+  @Field({ nullable: true })
+  observacoes?: string;
+
+  @Field({ nullable: true })
+  imagem?: string;
+
+  @Field({ nullable: true })
+  temp_max_conservacao?: number;
+
+  @Field({ nullable: true })
+  temp_min_conservacao?: number;
+
 
 
 }

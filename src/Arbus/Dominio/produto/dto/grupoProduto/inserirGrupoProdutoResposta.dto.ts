@@ -12,7 +12,7 @@ export class InserirProdutoGrupoRespostaDto extends _BaseObjectTypeSchema {
 
 
   @Field()
-  Descricao: string;
+  descricao: string;
 
 
 

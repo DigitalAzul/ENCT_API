@@ -12,9 +12,4 @@ export class SubGrupoProdutoRespostaEntityDto extends _BaseEntityTypeResposta {
     @Column()
     descricao: string;
 
-
-    @Column()
-    grupo_produtoId: string;
-
-
 }

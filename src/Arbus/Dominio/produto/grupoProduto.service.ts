@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { GrupoProdutoRespostaEntityDto } from './dto/grupoProduto/grupoProdutoRespostaEntity.dto';
-import { InserirGrupoProdutoDto } from './dto/grupoProduto/inserirGrupoPtoduto.dto';
+import { InserirGrupoProdutoArgs } from './dto/grupoProduto/inserirGrupoPtoduto.dto';
 import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
 
 
@@ -14,7 +14,7 @@ export class GrupoProdutoService {
     private produtoGrupoRepo: Repository<ProdutoGrupoEntity>,
   ) { }
 
-  async create(grupoProdutoDto: InserirGrupoProdutoDto): Promise<GrupoProdutoRespostaEntityDto | null> {
+  async create(grupoProdutoDto: InserirGrupoProdutoArgs): Promise<GrupoProdutoRespostaEntityDto | null> {
     try {
       const c = this.produtoGrupoRepo.create(grupoProdutoDto)
       return this.produtoGrupoRepo.save(c)

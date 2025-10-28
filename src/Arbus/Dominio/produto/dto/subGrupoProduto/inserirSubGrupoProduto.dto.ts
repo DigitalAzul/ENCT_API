@@ -12,8 +12,4 @@ export class InserirSubGrupoProdutoDto extends _BaseObjectTypeSchema {
     descricao: string;
 
 
-    @Field()
-    grupo_produtoId: string;
-
-
 }

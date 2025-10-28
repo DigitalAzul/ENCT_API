@@ -1,0 +1,12 @@
+export enum SITUACAO_PRODUTO {
+    "ATIVO" = "ATIVO",
+    "INATIVO" = "INATIVO"
+}
+
+
+export enum ESCALA_TEMRATURA_ENUM {
+    "CELSIUS" = "CELSIUS",
+    "FAHRENHEIT" = "FAHRENHEIT",
+    "KELVIN" = "KELVIN",
+    "NAO_APLICADO" = "NãO APLICADO"
+}

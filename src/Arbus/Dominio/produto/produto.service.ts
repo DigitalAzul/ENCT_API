@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { SITUACAO_PRODUTO } from '../comuns/types/TProduto';
+import { SITUACAO_PRODUTO } from '../comuns/types/Produto.types';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRespostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
 import { PRODUTO_CLASSIFICACAO_ENUN } from './entities/produto-classificacoa/produto-classificacao-enum';
