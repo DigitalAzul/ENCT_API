@@ -1,5 +1,5 @@
 import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from 'src/Arbus/Dominio/comuns/types/Produto.types';
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../produto-classificacoa/produto-classificacao-enum';
 import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
@@ -137,7 +137,7 @@ export class ProdutoEntity extends _BaseEntityType {
   sigla_primaria: ProdutoUnidadeSiglaEntity
 
 
-  @OneToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @OneToMany(() => ProdutoUnidadeSiglaEntity, (sigla) => sigla.produtos)
   @JoinColumn({ name: 'sigla_unidade_secundariaId' })
   sigla_secundaria: ProdutoUnidadeSiglaEntity
 
