@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CompraEntity } from '../compra/entities/compra.entity';
 import { ProdutoSubGrupoEntity } from './entities/produto-grupo-sub/produto-sub-grupo.entity';
 import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
 import { ProdutoMarcaEntity } from './entities/produto-marca/produto-marca.entity';
@@ -23,7 +24,9 @@ import { UnidadeMedidaProdutoService } from './unidadeMedidaProduto.service';
       ProdutoUnidadeMedidaEntity,
       ProdutoUnidadeSiglaEntity,
       ProdutoMarcaEntity,
-      ProdutoGrupoEntity
+      ProdutoGrupoEntity,
+      CompraEntity,
+
     ]),
   ],
   providers: [

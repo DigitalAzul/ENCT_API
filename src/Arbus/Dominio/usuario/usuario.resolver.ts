@@ -13,7 +13,7 @@ export class UsuarioResolver {
     return this.usuarioService.create(inserirNovoUsuarioInput);
   }
 
-  @Query(() => [UsuarioDto], { name: 'usuario' })
+  @Query(() => [UsuarioDto], { name: 'usuarios' })
   findAll() {
     return this.usuarioService.findAll();
   }

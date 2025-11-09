@@ -7,6 +7,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CompraModule } from './Arbus/Dominio/compra/compra.module';
+import { CompraEntity } from './Arbus/Dominio/compra/entities/compra.entity';
 import { ContatoEntity } from './Arbus/Dominio/pessoa/entities/contato.entity';
 import { EnderecoEntity } from './Arbus/Dominio/pessoa/entities/endereco.entity';
 import { NaturezaJuridicaEntity } from './Arbus/Dominio/pessoa/entities/natureza_juridica.entity';
@@ -51,7 +53,8 @@ import { UsuarioModule } from './Arbus/Dominio/usuario/usuario.module';
         ProdutoMarcaEntity,
         ProdutoUnidadeMedidaEntity,
         ProdutoUnidadeSiglaEntity,
-        UsuarioModule
+        UsuarioModule,
+        CompraEntity
       ],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -63,6 +66,7 @@ import { UsuarioModule } from './Arbus/Dominio/usuario/usuario.module';
     PessoaModule,
     ProdutoModule,
     UsuarioModule,
+    CompraModule
   ],
   controllers: [AppController],
   providers: [AppService],

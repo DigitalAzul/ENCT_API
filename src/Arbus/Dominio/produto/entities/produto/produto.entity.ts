@@ -140,7 +140,6 @@ export class ProdutoEntity extends _BaseEntityType {
   @OneToMany(() => ProdutoUnidadeSiglaEntity, (sigla) => sigla.produtos)
   @JoinColumn({ name: 'sigla_unidade_secundariaId' })
   sigla_secundaria: ProdutoUnidadeSiglaEntity
-
   // RELACIONAMENTOS
 
 
