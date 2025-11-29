@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { SITUACAO_PRODUTO } from '../comuns/types/Produto.types';
+import { SITUACAO_PRODUTO } from '../comuns/types/ProdutoTypes';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRespostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
 import { PRODUTO_CLASSIFICACAO_ENUN } from './entities/produto-classificacoa/produto-classificacao-enum';
@@ -24,7 +24,11 @@ export class ProdutoService {
     return this.produtoRepo.save(c)
   }
   async ObterTodosProdutos(): Promise<ProdutoRespostaEntityDto[]> {
-    return this.produtoRepo.find()
+    const a = await this.produtoRepo.find({
+      relations: ['grupo']
+    })
+    console.log(a)
+    return a
   }
   async ObterProduto(_id: string): Promise<ProdutoRespostaEntityDto | null> {
     return await this.produtoRepo.findOneBy({ _id })

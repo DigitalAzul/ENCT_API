@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from 'src/Arbus/Dominio/comuns/types/Produto.types';
+import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../../entities/produto-classificacoa/produto-classificacao-enum';
 
 @InputType()
@@ -47,7 +47,7 @@ export class InsProdutoEntraDto {
   situacao: SITUACAO_PRODUTO;
 
   @Field()
-  classificacao: PRODUTO_CLASSIFICACAO_ENUN; 
+  classificacao: PRODUTO_CLASSIFICACAO_ENUN;
 
   @Field()
   escala_temperatura: ESCALA_TEMRATURA_ENUM;

@@ -46,8 +46,9 @@ export class ProdutoResolver {
   }
 
   @Query(() => [ProdutoSchema], { name: 'Produtos' })
-  todos() {
-    return this.produtoService.ObterTodosProdutos()
+  async todos() {
+    console.log('asdasdasdasd')
+    return await this.produtoService.ObterTodosProdutos()
   }
 
   @Query(() => ProdutoSchema, { name: 'Produto_PorID' })

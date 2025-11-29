@@ -1,6 +1,7 @@
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from 'src/Arbus/Dominio/comuns/types/Produto.types';
-import { Column, Entity, JoinColumn, OneToMany } from 'typeorm';
+
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../produto-classificacoa/produto-classificacao-enum';
 import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
 import { ProdutoGrupoEntity } from '../produto-grupo/produto-grupo.entity';
@@ -113,10 +114,10 @@ export class ProdutoEntity extends _BaseEntityType {
 
   // RELACIONAMENTOS
 
-  // @OneToOne(() => ProdutoGrupoEntity, { eager: true })
-  // @JoinColumn({ name: 'produto_grupoId' })
-  @OneToMany(() => ProdutoGrupoEntity, (grupo) => grupo.produtos)
+  @OneToOne(() => ProdutoGrupoEntity, { eager: true })
   @JoinColumn({ name: 'produto_grupoId' })
+  // @OneToMany(() => ProdutoGrupoEntity, (grupo) => grupo.produtos)
+    // @JoinColumn({ name: 'produto_grupoId' })
   grupo: ProdutoGrupoEntity
 
   // @OneToOne(() => ProdutoSubGrupoEntity, { eager: true })

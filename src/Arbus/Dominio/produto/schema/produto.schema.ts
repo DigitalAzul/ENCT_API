@@ -1,7 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../comuns/types/Produto.types';
+import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../entities/produto-classificacoa/produto-classificacao-enum';
+import { GrupoProdutoSchema } from './grupoProduto.schema';
+import { SubGrupoProdutoSchema } from './grupoSubGrupoProduto.schema';
+import { MarcaProdutoSchema } from './marcaProduto.schema';
 
 @ObjectType()
 export class ProdutoSchema extends _BaseObjectTypeSchema {
@@ -21,7 +24,7 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
   sigla_unidade_primariaId: string;
 
   @Field()
-  fator_conversao_primaria: number; 
+  fator_conversao_primaria: number;
 
   @Field()
   ha_segunda_unidade: boolean;
@@ -87,5 +90,13 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
   temp_min_conservacao?: number;
 
 
+  @Field((_type) => GrupoProdutoSchema)
+  grupo: Promise<GrupoProdutoSchema>
+
+  @Field((_type) => SubGrupoProdutoSchema)
+  subGrupo: Promise<SubGrupoProdutoSchema>
+
+  @Field((_type) => MarcaProdutoSchema)
+  marca: Promise<MarcaProdutoSchema>
 
 }

@@ -1,7 +1,9 @@
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from 'src/Arbus/Dominio/comuns/types/Produto.types';
+
 import { Column, Entity } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../../entities/produto-classificacoa/produto-classificacao-enum';
+import { ProdutoGrupoEntity } from '../../entities/produto-grupo/produto-grupo.entity';
 
 
 
@@ -15,6 +17,9 @@ export class ProdutoRespostaEntityDto extends _BaseEntityType {
 
   @Column()
   produto_grupoId: string;
+
+  @Column()
+  grupo: ProdutoGrupoEntity;
 
   @Column()
   produto_sub_grupoId: string;
