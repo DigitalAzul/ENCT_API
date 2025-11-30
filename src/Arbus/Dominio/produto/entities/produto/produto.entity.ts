@@ -1,5 +1,5 @@
 
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../produto-classificacoa/produto-classificacao-enum';
@@ -19,10 +19,10 @@ export class ProdutoEntity extends _BaseEntityType {
   produto_marcaId: string;
 
   @Column()
-  produto_grupoId: string;
+  grupoId: string;
 
   @Column()
-  produto_sub_grupoId: string;
+  sub_grupoId: string;
 
   @Column()
   sigla_unidade_primariaId: string;
@@ -113,33 +113,32 @@ export class ProdutoEntity extends _BaseEntityType {
 
 
   // RELACIONAMENTOS
-
-  @OneToOne(() => ProdutoGrupoEntity, { eager: true })
-  @JoinColumn({ name: 'produto_grupoId' })
-  // @OneToMany(() => ProdutoGrupoEntity, (grupo) => grupo.produtos)
-    // @JoinColumn({ name: 'produto_grupoId' })
+  @ManyToOne(() => ProdutoGrupoEntity, { eager: true })
+  @JoinColumn({ name: 'grupoId', referencedColumnName: '_id' })
   grupo: ProdutoGrupoEntity
 
-  // @OneToOne(() => ProdutoSubGrupoEntity, { eager: true })
-  // @JoinColumn({ name: 'produto_sub_grupoId' })
-  @OneToMany(() => ProdutoSubGrupoEntity, (subgrupo) => subgrupo.produtos)
-  @JoinColumn({ name: 'produto_sub_grupoId' })
+
+  @ManyToOne(() => ProdutoSubGrupoEntity, { eager: true })
+  @JoinColumn({ name: 'sub_grupoId', referencedColumnName: '_id' })
   subgrupo: ProdutoSubGrupoEntity
+  // @OneToMany(() => ProdutoSubGrupoEntity, (subgrupo) => subgrupo.produtos)
+  // @JoinColumn({ name: 'produto_sub_grupoId' })
+  // subgrupo: ProdutoSubGrupoEntity
 
   //@OneToOne(() => ProdutoMarcaEntity, { eager: true })
-  @OneToMany(() => ProdutoMarcaEntity, (marca) => marca.produtos)
-  @JoinColumn({ name: 'produto_marcaId' })
+  @ManyToOne(() => ProdutoMarcaEntity, { eager: true })
+  @JoinColumn({ name: 'produto_marcaId', referencedColumnName: '_id' })
   marca: ProdutoMarcaEntity
 
   // UNIDADE DE MEDIDA
   // @OneToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
-  @OneToMany(() => ProdutoUnidadeSiglaEntity, (sigla) => sigla.produtos)
-  @JoinColumn({ name: 'sigla_unidade_primariaId' })
+  @ManyToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @JoinColumn({ name: 'sigla_unidade_primariaId', referencedColumnName: '_id' })
   sigla_primaria: ProdutoUnidadeSiglaEntity
 
 
-  @OneToMany(() => ProdutoUnidadeSiglaEntity, (sigla) => sigla.produtos)
-  @JoinColumn({ name: 'sigla_unidade_secundariaId' })
+  @ManyToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
+  @JoinColumn({ name: 'sigla_unidade_secundariaId', referencedColumnName: '_id' })
   sigla_secundaria: ProdutoUnidadeSiglaEntity
   // RELACIONAMENTOS
 

@@ -1,5 +1,5 @@
-import { _BaseEntityTypeResposta } from 'src/Arbus/Dominio/comuns/interfaces/_BaseEntityTypeResposta';
 import { Column, Entity } from 'typeorm';
+import { _BaseEntityTypeResposta } from '../../../comuns/interfaces/_BaseEntityTypeResposta';
 import { ProdutoUnidadeSiglaEntity } from '../../entities/produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity';
 
 
@@ -8,14 +8,14 @@ import { ProdutoUnidadeSiglaEntity } from '../../entities/produto-sigla-unidade-
 export class UnidadeMedidaProdutoRespostaEntityDto extends _BaseEntityTypeResposta {
 
 
-
+  @Column()
   sigla_primaria: ProdutoUnidadeSiglaEntity
 
   @Column()
   sigla_unidade_primariaId: string;
 
 
-
+  @Column()
   sigla_secundaria: ProdutoUnidadeSiglaEntity
 
   @Column()

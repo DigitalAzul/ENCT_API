@@ -1,5 +1,6 @@
-import { _BaseEntityTypeResposta } from 'src/Arbus/Dominio/comuns/interfaces/_BaseEntityTypeResposta';
+
 import { Column, Entity } from 'typeorm';
+import { _BaseEntityTypeResposta } from '../../../comuns/interfaces/_BaseEntityTypeResposta';
 
 
 

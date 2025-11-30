@@ -5,6 +5,7 @@ import { PRODUTO_CLASSIFICACAO_ENUN } from '../entities/produto-classificacoa/pr
 import { GrupoProdutoSchema } from './grupoProduto.schema';
 import { SubGrupoProdutoSchema } from './grupoSubGrupoProduto.schema';
 import { MarcaProdutoSchema } from './marcaProduto.schema';
+import { SiglaUnidadeMedidaProdutoSchema } from './siglaUnidadeMedidaProduto.schema';
 
 @ObjectType()
 export class ProdutoSchema extends _BaseObjectTypeSchema {
@@ -15,10 +16,10 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
   produto_marcaId: string;
 
   @Field()
-  produto_grupoId: string;
+  grupoId: string;
 
   @Field()
-  produto_sub_grupoId: string;
+  sub_grupoId: string;
 
   @Field()
   sigla_unidade_primariaId: string;
@@ -90,13 +91,20 @@ export class ProdutoSchema extends _BaseObjectTypeSchema {
   temp_min_conservacao?: number;
 
 
-  @Field((_type) => GrupoProdutoSchema)
+  @Field((_type) => GrupoProdutoSchema, { nullable: true })
   grupo: Promise<GrupoProdutoSchema>
 
-  @Field((_type) => SubGrupoProdutoSchema)
-  subGrupo: Promise<SubGrupoProdutoSchema>
+  @Field((_type) => SubGrupoProdutoSchema, { nullable: true })
+  subgrupo: Promise<SubGrupoProdutoSchema>
 
   @Field((_type) => MarcaProdutoSchema)
   marca: Promise<MarcaProdutoSchema>
+
+
+  @Field((_type) => SiglaUnidadeMedidaProdutoSchema, { nullable: true })
+  sigla_primaria: Promise<SiglaUnidadeMedidaProdutoSchema>
+
+  @Field((_type) => SiglaUnidadeMedidaProdutoSchema, { nullable: true })
+  sigla_secundaria: Promise<SiglaUnidadeMedidaProdutoSchema>
 
 }

@@ -11,10 +11,10 @@ export class InsProdutoEntraDto {
   produto_marcaId: string;
 
   @Field()
-  produto_grupoId: string;
+  grupoId: string;
 
   @Field()
-  produto_sub_grupoId: string;
+  sub_grupoId: string;
 
   @Field()
   sigla_unidade_primariaId: string;

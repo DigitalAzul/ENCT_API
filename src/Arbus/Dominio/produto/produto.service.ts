@@ -24,9 +24,7 @@ export class ProdutoService {
     return this.produtoRepo.save(c)
   }
   async ObterTodosProdutos(): Promise<ProdutoRespostaEntityDto[]> {
-    const a = await this.produtoRepo.find({
-      relations: ['grupo']
-    })
+    const a = await this.produtoRepo.find()
     console.log(a)
     return a
   }

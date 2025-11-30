@@ -3,6 +3,7 @@ import { Column, Entity } from 'typeorm';
 import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../../entities/produto-classificacoa/produto-classificacao-enum';
+import { ProdutoSubGrupoEntity } from '../../entities/produto-grupo-sub/produto-sub-grupo.entity';
 import { ProdutoGrupoEntity } from '../../entities/produto-grupo/produto-grupo.entity';
 
 
@@ -16,13 +17,16 @@ export class ProdutoRespostaEntityDto extends _BaseEntityType {
   produto_marcaId: string;
 
   @Column()
-  produto_grupoId: string;
+  grupoId: string;
 
   @Column()
   grupo: ProdutoGrupoEntity;
 
   @Column()
-  produto_sub_grupoId: string;
+  sub_grupoId: string;
+
+  @Column()
+  subgrupo: ProdutoSubGrupoEntity;
 
   @Column()
   sigla_unidade_primariaId: string;
