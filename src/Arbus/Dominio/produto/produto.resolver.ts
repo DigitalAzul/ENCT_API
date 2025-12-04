@@ -57,8 +57,9 @@ export class ProdutoResolver {
   }
 
   @Mutation(() => ProdutoSchema)
-  Produto_Edicao(@Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
-    return {};
+  async Produto_Edicao(@Args('id') id: string, @Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
+
+    return await this.produtoService.update(id, updateProdutoInput)
   }
 
   @Mutation(() => ProdutoSchema)

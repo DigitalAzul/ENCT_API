@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { SITUACAO_PRODUTO } from '../comuns/types/ProdutoTypes';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRespostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
+import { UpdateProdutoInput } from './dto/produto/update-produto.input';
 import { PRODUTO_CLASSIFICACAO_ENUN } from './entities/produto-classificacoa/produto-classificacao-enum';
 import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
 import { ProdutoEntity } from './entities/produto/produto.entity';
@@ -49,6 +50,16 @@ export class ProdutoService {
     ]
     return a
 
+  }
+
+  async update(id: string, dto: UpdateProdutoInput): Promise<Boolean> {
+    const a = await this.produtoRepo.update(
+      { _id: id },
+      { ...dto }
+    )
+    if (a) return true
+
+    return false
   }
 
 
