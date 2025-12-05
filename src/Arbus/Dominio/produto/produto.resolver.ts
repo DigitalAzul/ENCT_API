@@ -52,12 +52,12 @@ export class ProdutoResolver {
   }
 
   @Query(() => ProdutoSchema, { name: 'Produto_PorID' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return {};
   }
 
   @Mutation(() => ProdutoSchema)
-  async Produto_Edicao(@Args('id') id: string, @Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
+  async Produto_Edicao(@Args('id', { type: () => String, name: 'id' }) id: string, @Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput) {
 
     return await this.produtoService.update(id, updateProdutoInput)
   }
