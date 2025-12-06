@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { InserirSubGrupoProdutoDto } from './dto/subGrupoProduto/inserirSubGrupoProduto.dto';
+import { InserirSubGrupoProdutoArgs, UpdateSubGrupoProdutoArgs } from './dto/subGrupoProduto/inserirSubGrupoProduto.dto';
 import { SubGrupoProdutoRespostaEntityDto } from './dto/subGrupoProduto/subGrupoProdutoRespostaEntity.dto';
 import { ProdutoSubGrupoEntity } from './entities/produto-grupo-sub/produto-sub-grupo.entity';
 
@@ -14,12 +14,15 @@ export class SubGrupoProdutoService {
     private produtoSubGrupoRepo: Repository<ProdutoSubGrupoEntity>,
   ) { }
 
-  async create(subGrupoProdutoDto: InserirSubGrupoProdutoDto): Promise<SubGrupoProdutoRespostaEntityDto | null> {
+  async create(subGrupoProdutoDto: InserirSubGrupoProdutoArgs): Promise<Boolean> {
     try {
       const c = this.produtoSubGrupoRepo.create(subGrupoProdutoDto)
-      return this.produtoSubGrupoRepo.save(c)
+      const s = await this.produtoSubGrupoRepo.save(c)
+      if (s) return true
+
+      return false
     } catch (error) {
-      return null
+      return false
     }
 
   }
@@ -49,6 +52,15 @@ export class SubGrupoProdutoService {
   }
 
 
+  async update(id: string, dto: UpdateSubGrupoProdutoArgs): Promise<Boolean> {
+    const a = await this.produtoSubGrupoRepo.update(
+      { _id: id },
+      { ...dto }
+    )
+    if (a) return true
+
+    return false
+  }
 
 
 

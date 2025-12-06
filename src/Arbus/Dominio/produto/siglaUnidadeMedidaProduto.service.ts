@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { InserirSiglaUnidadeMedidaProdutoDto } from './dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto';
+import { InserirSiglaUnidadeMedidaProdutoDto, SiglaUnidadeMedidaProdutoEditaArgs } from './dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto';
 import { SiglaUnidadeMedidaProdutoRespostaEntityDto } from './dto/siglaUnidadeMedidaProduto/siglaUnidadeMedidaProduto.resposta.entity.dto';
 import { ProdutoUnidadeSiglaEntity } from './entities/produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity';
 
@@ -13,12 +13,15 @@ export class SiglaUnidadeMedidaProdutoService {
     private produtoUnidadeSiglaRepo: Repository<ProdutoUnidadeSiglaEntity>,
   ) { }
 
-  async create(produtoUnidadeSiglaDto: InserirSiglaUnidadeMedidaProdutoDto): Promise<SiglaUnidadeMedidaProdutoRespostaEntityDto | null> {
+  async create(produtoUnidadeSiglaDto: InserirSiglaUnidadeMedidaProdutoDto): Promise<Boolean> {
     try {
       const c = this.produtoUnidadeSiglaRepo.create(produtoUnidadeSiglaDto)
-      return this.produtoUnidadeSiglaRepo.save(c)
+      const s = await this.produtoUnidadeSiglaRepo.save(c)
+      if (s) return true
+
+      return false
     } catch (error) {
-      return null
+      return false
     }
 
   }
@@ -49,6 +52,15 @@ export class SiglaUnidadeMedidaProdutoService {
 
   }
 
+  async update(id: string, dto: SiglaUnidadeMedidaProdutoEditaArgs): Promise<Boolean> {
+    const a = await this.produtoUnidadeSiglaRepo.update(
+      { _id: id },
+      { ...dto }
+    )
+    if (a) return true
+
+    return false
+  }
 
 
 }

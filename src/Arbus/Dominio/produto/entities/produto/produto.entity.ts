@@ -33,6 +33,13 @@ export class ProdutoEntity extends _BaseEntityType {
   @Column()
   ha_segunda_unidade: boolean;
 
+  @Column({ nullable: true })
+  sigla_unidade_secundariaId?: string;
+
+  @Column({ type: 'numeric', nullable: true })
+  fator_conversao_secundaria?: number; // define o valor de multiplacação entre unidades secundaria
+
+
   @Column()
   codigo_produto: string;
 
@@ -78,11 +85,6 @@ export class ProdutoEntity extends _BaseEntityType {
   )
   escala_temperatura: ESCALA_TEMRATURA_ENUM;
 
-  @Column({ nullable: true })
-  sigla_unidade_secundariaId?: string;
-
-  @Column({ type: 'numeric', nullable: true })
-  fator_conversao_secundaria?: number; // define o valor de multiplacação entre unidades secundaria
 
   //
   // NAO OBRIGATORIOS

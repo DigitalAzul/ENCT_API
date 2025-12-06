@@ -1,5 +1,5 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from 'src/Arbus/Dominio/comuns/interfaces/_BaseSchemaType';
+import { Field, InputType, PartialType } from '@nestjs/graphql';
+import { _BaseObjectTypeSchema } from '../../../comuns/interfaces/_BaseSchemaType';
 
 
 
@@ -15,6 +15,7 @@ export class InserirGrupoProdutoDto extends _BaseObjectTypeSchema {
   descricao: string;
 
 }
+
 @InputType()
 export class InserirGrupoProdutoArgs {
 
@@ -27,3 +28,6 @@ export class InserirGrupoProdutoArgs {
   descricao: string;
 
 }
+
+@InputType()
+export class EditaGrupoProdutoArgs extends PartialType(InserirGrupoProdutoDto) { }

@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from 'src/Arbus/Dominio/comuns/interfaces/_BaseSchemaType';
+import { _BaseObjectTypeSchema } from '../../../comuns/interfaces/_BaseSchemaType';
 
 
 

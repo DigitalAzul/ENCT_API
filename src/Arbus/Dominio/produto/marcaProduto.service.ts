@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { InserirMarcaProdutoDto } from './dto/marcaProduto/inserirMarcaProduto.dto';
+import { MarcaProdutoArgs } from './dto/marcaProduto/inserirMarcaProduto.dto';
 import { MarcaProdutoRespostaEntityDto } from './dto/marcaProduto/marcaProduto.resposta.entity.dto';
 import { ProdutoMarcaEntity } from './entities/produto-marca/produto-marca.entity';
 
@@ -14,12 +14,15 @@ export class MarcaProdutoService {
     private produtoMarcaRepo: Repository<ProdutoMarcaEntity>,
   ) { }
 
-  async create(inserirMarcaProdutoDto: InserirMarcaProdutoDto): Promise<MarcaProdutoRespostaEntityDto | null> {
+  async create(inserirMarcaProdutoDto: MarcaProdutoArgs): Promise<Boolean> {
     try {
       const c = this.produtoMarcaRepo.create(inserirMarcaProdutoDto)
-      return this.produtoMarcaRepo.save(c)
+      const s = await this.produtoMarcaRepo.save(c)
+      if (s) return true
+
+      return false
     } catch (error) {
-      return null
+      return false
     }
 
   }
@@ -48,6 +51,15 @@ export class MarcaProdutoService {
 
   }
 
+  async update(id: string, dto: MarcaProdutoArgs): Promise<Boolean> {
+    const a = await this.produtoMarcaRepo.update(
+      { _id: id },
+      { ...dto }
+    )
+    if (a) return true
+
+    return false
+  }
 
 
 }

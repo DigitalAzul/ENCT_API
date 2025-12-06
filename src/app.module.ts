@@ -18,7 +18,6 @@ import { ProdutoSubGrupoEntity } from './Arbus/Dominio/produto/entities/produto-
 import { ProdutoGrupoEntity } from './Arbus/Dominio/produto/entities/produto-grupo/produto-grupo.entity';
 import { ProdutoMarcaEntity } from './Arbus/Dominio/produto/entities/produto-marca/produto-marca.entity';
 import { ProdutoUnidadeSiglaEntity } from './Arbus/Dominio/produto/entities/produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity';
-import { ProdutoUnidadeMedidaEntity } from './Arbus/Dominio/produto/entities/produto-unidade-medida/produto-unidade-medida.entity';
 import { ProdutoEntity } from './Arbus/Dominio/produto/entities/produto/produto.entity';
 import { ProdutoModule } from './Arbus/Dominio/produto/produto.module';
 import { UsuarioEntity } from './Arbus/Dominio/usuario/entities/usuario.entity';
@@ -51,7 +50,6 @@ import { UsuarioModule } from './Arbus/Dominio/usuario/usuario.module';
         ProdutoGrupoEntity,
         ProdutoSubGrupoEntity,
         ProdutoMarcaEntity,
-        ProdutoUnidadeMedidaEntity,
         ProdutoUnidadeSiglaEntity,
         UsuarioModule,
         CompraEntity
