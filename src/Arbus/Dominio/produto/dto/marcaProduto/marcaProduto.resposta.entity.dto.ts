@@ -1,10 +1,10 @@
-import { _BaseEntityTypeResposta } from 'src/Arbus/Dominio/comuns/interfaces/_BaseEntityTypeResposta';
 import { Column, Entity } from 'typeorm';
+import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
 
 
 
 @Entity()
-export class MarcaProdutoRespostaEntityDto extends _BaseEntityTypeResposta {
+export class MarcaProdutoRespostaEntityDto extends _BaseEntity {
 
   @Column()
   titulo: string;

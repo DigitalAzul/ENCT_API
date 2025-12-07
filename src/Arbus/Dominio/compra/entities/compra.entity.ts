@@ -1,10 +1,10 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
-import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
+import { _BaseEntity } from '../../comuns/interfaces/_BaseEntityType';
 import { PessoasEntity } from '../../pessoa/entities/pessoa.entity';
 import { CompraItemEntity } from './compraItem.entity';
 
 @Entity({ name: 'compra' })
-export class CompraEntity extends _BaseEntityType {
+export class CompraEntity extends _BaseEntity {
 
   @Column()
   previsao_entrega: Date;

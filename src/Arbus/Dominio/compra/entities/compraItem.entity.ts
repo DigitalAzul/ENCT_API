@@ -1,10 +1,10 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
+import { _BaseEntity } from '../../comuns/interfaces/_BaseEntityType';
 import { ProdutoEntity } from '../../produto/entities/produto/produto.entity';
 import { CompraEntity } from './compra.entity';
 
 @Entity({ name: 'compra_itens' })
-export class CompraItemEntity extends _BaseEntityType {
+export class CompraItemEntity extends _BaseEntity {
 
 
   @ManyToOne(() => CompraEntity, (compra) => compra.itens)

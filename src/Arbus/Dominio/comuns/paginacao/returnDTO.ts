@@ -1,18 +1,19 @@
-import { Field, ObjectType } from "@nestjs/graphql";
-import { PessoaDto } from "../../pessoa/dto/pessoa.dto";
+import { Column, Entity } from "typeorm";
+import { PessoaEntityDto } from "../../pessoa/entities/pessoa.entity";
 
-@ObjectType()
+
+@Entity()
 export class PaginatedResponse {
-    @Field()
+    @Column()
     totalItems: number;
 
-    @Field(() => [PessoaDto])
-    items: PessoaDto[];
+    @Column()
+    items: PessoaEntityDto[];
 
-    @Field()
+    @Column()
     page: number;
 
-    @Field()
+    @Column()
     size: number;
 };
 

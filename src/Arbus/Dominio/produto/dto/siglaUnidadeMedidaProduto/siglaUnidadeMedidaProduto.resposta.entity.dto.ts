@@ -1,11 +1,11 @@
 
 import { Column, Entity } from 'typeorm';
-import { _BaseEntityTypeResposta } from '../../../comuns/interfaces/_BaseEntityTypeResposta';
+import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
 
 
 
 @Entity()
-export class SiglaUnidadeMedidaProdutoRespostaEntityDto extends _BaseEntityTypeResposta {
+export class SiglaUnidadeMedidaProdutoRespostaEntityDto extends _BaseEntity {
 
   @Column()
   sigla: string;

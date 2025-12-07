@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class _BaseEntityComum {
+export class _BaseObjectTypeComum {
 
     @Field({ nullable: true })
     _id: string;

@@ -1,10 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { InserirPessoaInputDto } from './dto/ins.pessoa.input.dto';
 
-import { _Filtering, _Pagination, _Sorting } from '../comuns/paginacao/paginationParams';
-import { PaginatedResponse } from '../comuns/paginacao/returnDTO';
 import { UpdatePessoaInputDto } from './dto/alt.pessoa.input.dto';
-import { PessoaDto } from './dto/pessoa.dto';
+import { PessoaDto } from './entities/pessoa.entity';
 import { PessoaService } from './pessoa.service';
 
 @Resolver(() => PessoaDto)
@@ -42,13 +40,13 @@ export class PessoaResolver {
     return this.pessoaService.remove(id);
   }
 
-  @Query(() => PaginatedResponse, { name: 'Paginacao' })
-  Paginar(
-    @Args('PaginationParams', { type: () => _Pagination }) pagination: _Pagination,
-    @Args('SortingParams', { type: () => _Sorting }) sort: _Sorting,
-    @Args('FilteringParams', { type: () => _Filtering }) filter: _Filtering,
-  ) {
-    console.log(pagination, sort, filter)
-    return this.pessoaService.paginacao(pagination, sort, filter);
-  }
+  // @Query(() => PaginatedResponse, { name: 'Paginacao' })
+  // Paginar(
+  //   @Args('PaginationParams', { type: () => _Pagination }) pagination: _Pagination,
+  //   @Args('SortingParams', { type: () => _Sorting }) sort: _Sorting,
+  //   @Args('FilteringParams', { type: () => _Filtering }) filter: _Filtering,
+  // ) {
+  //   console.log(pagination, sort, filter)
+  //   return this.pessoaService.paginacao(pagination, sort, filter);
+  // }
 }

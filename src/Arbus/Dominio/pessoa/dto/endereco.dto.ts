@@ -1,8 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
+import { _BaseEntity } from '../../comuns/interfaces/_BaseEntityType';
 
 @ObjectType()
-export class EnderecoDto extends _BaseEntityType {
+export class EnderecoDto extends _BaseEntity {
 
     @Field()
     titulo: string;

@@ -1,6 +1,6 @@
 
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
 import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../produto-classificacoa/produto-classificacao-enum';
 import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
@@ -11,7 +11,7 @@ import { ProdutoUnidadeSiglaEntity } from '../produto-sigla-unidade-medida/produ
 
 
 @Entity({ name: 'produto' })
-export class ProdutoEntity extends _BaseEntityType {
+export class ProdutoEntity extends _BaseEntity {
 
 
 

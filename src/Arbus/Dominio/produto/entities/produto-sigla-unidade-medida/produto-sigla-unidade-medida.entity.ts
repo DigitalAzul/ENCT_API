@@ -1,10 +1,10 @@
 import { Column, Entity } from 'typeorm';
-import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
+import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
 
 
 
 @Entity({ name: 'produto_unidade_sigla' })
-export class ProdutoUnidadeSiglaEntity extends _BaseEntityType {
+export class ProdutoUnidadeSiglaEntity extends _BaseEntity {
 
 
   @Column()

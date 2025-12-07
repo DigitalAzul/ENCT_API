@@ -1,9 +1,9 @@
 import { Column, Entity } from 'typeorm';
-import { _BaseEntityTypeResposta } from '../../../comuns/interfaces/_BaseEntityTypeResposta';
+import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
 
 
 @Entity()
-export class GrupoProdutoRespostaEntityDto extends _BaseEntityTypeResposta {
+export class GrupoProdutoRespostaEntityDto extends _BaseEntity {
 
 
     @Column()

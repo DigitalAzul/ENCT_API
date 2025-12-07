@@ -1,11 +1,11 @@
 import { Column, Entity } from 'typeorm';
-import { _BaseEntityType } from '../../comuns/interfaces/_BaseEntityType';
+import { _BaseEntity } from '../../comuns/interfaces/_BaseEntityType';
 
 
 
 
 @Entity({ name: 'contato' })
-export class ContatoEntity extends _BaseEntityType {
+export class ContatoEntity extends _BaseEntity {
 
   @Column()
   mercador_id: string;
