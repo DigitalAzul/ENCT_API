@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
+import { _BaseObjectType } from '../../comuns/interfaces/_BaseObjectType';
 import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../comuns/types/ProdutoTypes';
 import { PRODUTO_CLASSIFICACAO_ENUN } from '../entities/produto-classificacoa/produto-classificacao-enum';
 import { GrupoProdutoSchema } from './grupoProduto.schema';
@@ -8,7 +8,7 @@ import { MarcaProdutoSchema } from './marcaProduto.schema';
 import { SiglaUnidadeMedidaProdutoSchema } from './siglaUnidadeMedidaProduto.schema';
 
 @ObjectType()
-export class ProdutoSchema extends _BaseObjectTypeSchema {
+export class ProdutoSchema extends _BaseObjectType {
 
 
 

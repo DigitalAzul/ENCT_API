@@ -1,15 +1,15 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class _BaseSchemaComum {
+export abstract class _BaseObjectType {
 
     @Field({ nullable: true })
     _id: string;
 
-    @Field({ nullable: true })
+    @Field()
     _criado_em: Date;
 
-    @Field({ nullable: true })
+    @Field()
     _criado_por_id: string;
 
 

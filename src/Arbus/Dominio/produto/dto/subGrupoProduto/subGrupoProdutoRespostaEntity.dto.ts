@@ -1,10 +1,10 @@
 import { Column, Entity } from 'typeorm';
-import { _BaseEntityTypeResposta } from '../../../comuns/interfaces/_BaseEntityTypeResposta';
+import { _BaseEntityType } from '../../../comuns/interfaces/_BaseEntityType';
 
 
 
 @Entity()
-export class SubGrupoProdutoRespostaEntityDto extends _BaseEntityTypeResposta {
+export class SubGrupoProdutoRespostaEntityDto extends _BaseEntityType {
 
     @Column()
     titulo: string;

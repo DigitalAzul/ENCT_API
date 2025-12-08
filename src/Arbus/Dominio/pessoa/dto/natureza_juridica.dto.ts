@@ -1,10 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseObjectTypeDto } from '../../comuns/interfaces/_BaseObjectType ';
+import { _BaseObjectType } from '../../comuns/interfaces/_BaseObjectType';
 
 
 
 @ObjectType()
-export class NaturezaJuridicaDto extends _BaseObjectTypeDto {
+export class NaturezaJuridicaDto extends _BaseObjectType {
 
   @Field()
   titulo: string

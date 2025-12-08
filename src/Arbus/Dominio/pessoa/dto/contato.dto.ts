@@ -1,8 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from '../../comuns/interfaces/_BaseSchemaType';
+import { _BaseObjectType } from '../../comuns/interfaces/_BaseObjectType';
 
 @ObjectType()
-export class ContatoDto extends _BaseObjectTypeSchema {
+export class ContatoDto extends _BaseObjectType {
 
     @Field()
     mercador_id: string;

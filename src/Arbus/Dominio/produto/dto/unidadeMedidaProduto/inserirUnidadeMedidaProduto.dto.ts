@@ -1,10 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from '../../../comuns/interfaces/_BaseSchemaType';
+import { _BaseObjectType } from '../../../comuns/interfaces/_BaseObjectType';
 
 
 
 @InputType()
-export class InserirUnidadeMedidaProdutoDto extends _BaseObjectTypeSchema {
+export class InserirUnidadeMedidaProdutoDto extends _BaseObjectType {
 
 
     @Field()

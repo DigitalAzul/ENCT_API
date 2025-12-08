@@ -1,9 +1,9 @@
 import { Field, InputType, PartialType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from '../../../comuns/interfaces/_BaseSchemaType';
+import { _BaseObjectType } from '../../../comuns/interfaces/_BaseObjectType';
 
 
 @InputType()
-export class SubGrupoProdutoDto extends _BaseObjectTypeSchema {
+export class SubGrupoProdutoDto extends _BaseObjectType {
 
     @Field()
     titulo: string;

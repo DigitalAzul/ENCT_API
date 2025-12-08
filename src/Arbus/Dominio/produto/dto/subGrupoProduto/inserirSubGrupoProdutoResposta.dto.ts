@@ -1,10 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseObjectTypeSchema } from 'src/Arbus/Dominio/comuns/interfaces/_BaseSchemaType';
+import { _BaseObjectType } from '../../../comuns/interfaces/_BaseObjectType';
 
 
 
 @ObjectType()
-export class InserirSubGrupoProdutoRespostaDto extends _BaseObjectTypeSchema {
+export class InserirSubGrupoProdutoRespostaDto extends _BaseObjectType {
 
 
     @Field()

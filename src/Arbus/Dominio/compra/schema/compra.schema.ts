@@ -1,12 +1,12 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { _BaseObjectTypeSchema } from "../../comuns/interfaces/_BaseSchemaType";
+import { _BaseObjectType } from "../../comuns/interfaces/_BaseObjectType";
 import { ProdutoSchema } from "../../produto/schema/produto.schema";
 
 
 
 
 @ObjectType()
-export class CompraSchema extends _BaseObjectTypeSchema {
+export class CompraSchema extends _BaseObjectType {
 
     @Field()
     produtos: ProdutoSchema
