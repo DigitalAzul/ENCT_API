@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { SITUACAO_PRODUTO } from '../comuns/types/ProdutoTypes';
+import {
+  ORIGEM_PRODUTO_ENUM,
+  SITUACAO_PRODUTO,
+} from '../comuns/types/ProdutoTypes';
 import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
 import { ProdutoRespostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
 import { UpdateProdutoInput } from './dto/produto/update-produto.input';
@@ -19,49 +22,62 @@ export class ProdutoService {
     private produtoRepo: Repository<ProdutoEntity>,
   ) { }
 
-  async inserirProduto(insProdutoEntraDto: InsProdutoEntraDto): Promise<ProdutoRespostaEntityDto> {
-    const c = this.produtoRepo.create(insProdutoEntraDto)
+  async inserirProduto(
+    insProdutoEntraDto: InsProdutoEntraDto,
+  ): Promise<ProdutoRespostaEntityDto> {
+    const c = this.produtoRepo.create(insProdutoEntraDto);
 
-    return this.produtoRepo.save(c)
+    return this.produtoRepo.save(c);
   }
   async ObterTodosProdutos(): Promise<ProdutoRespostaEntityDto[]> {
-    const a = await this.produtoRepo.find()
-    console.log(a)
-    return a
+    const a = await this.produtoRepo.find();
+    console.log(a);
+    return a;
   }
   async ObterProduto(_id: string): Promise<ProdutoRespostaEntityDto | null> {
-    return await this.produtoRepo.findOneBy({ _id })
+    return await this.produtoRepo.findOneBy({ _id });
   }
   async excluirProduto(_id: string) {
-    return await this.produtoRepo.softDelete({ _id })
+    return await this.produtoRepo.softDelete({ _id });
   }
-  async classificacaoProduto() {
+  classificacaoProduto() {
     const a = [
-      { value: PRODUTO_CLASSIFICACAO_ENUN.REVENDA, label: PRODUTO_CLASSIFICACAO_ENUN.REVENDA },
-      { value: PRODUTO_CLASSIFICACAO_ENUN.CONSUMO, label: PRODUTO_CLASSIFICACAO_ENUN.CONSUMO }
-    ]
-    return a
-
+      {
+        value: PRODUTO_CLASSIFICACAO_ENUN.REVENDA,
+        label: PRODUTO_CLASSIFICACAO_ENUN.REVENDA,
+      },
+      {
+        value: PRODUTO_CLASSIFICACAO_ENUN.CONSUMO,
+        label: PRODUTO_CLASSIFICACAO_ENUN.CONSUMO,
+      },
+    ];
+    return a;
   }
-  async situacaoProduto() {
+  origemProduto() {
+    const a = [
+      {
+        value: ORIGEM_PRODUTO_ENUM.NACIONAL,
+        label: ORIGEM_PRODUTO_ENUM.NACIONAL,
+      },
+      {
+        value: ORIGEM_PRODUTO_ENUM.ESTRANGEIRA,
+        label: ORIGEM_PRODUTO_ENUM.ESTRANGEIRA,
+      },
+    ];
+    return a;
+  }
+  situacaoProduto() {
     const a = [
       { value: SITUACAO_PRODUTO.ATIVO, label: SITUACAO_PRODUTO.ATIVO },
-      { value: SITUACAO_PRODUTO.INATIVO, label: SITUACAO_PRODUTO.INATIVO }
-    ]
-    return a
-
+      { value: SITUACAO_PRODUTO.INATIVO, label: SITUACAO_PRODUTO.INATIVO },
+    ];
+    return a;
   }
 
-  async update(id: string, dto: UpdateProdutoInput): Promise<Boolean> {
-    const a = await this.produtoRepo.update(
-      { _id: id },
-      { ...dto }
-    )
-    if (a) return true
+  async update(id: string, dto: UpdateProdutoInput): Promise<boolean> {
+    const a = await this.produtoRepo.update({ _id: id }, { ...dto });
+    if (a) return true;
 
-    return false
+    return false;
   }
-
-
-
 }

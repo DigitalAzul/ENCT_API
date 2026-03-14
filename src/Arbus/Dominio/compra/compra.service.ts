@@ -1,24 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreateCompraInput } from './dto/create-compra.input';
-import { UpdateCompraInput } from './dto/update-compra.input';
-import { CompraEntity } from './entities/compra.entity';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreateCompraInput } from "./dto/create-compra.input";
+import { UpdateCompraInput } from "./dto/update-compra.input";
+import { CompraEntity } from "./entities/compra.entity";
 
 @Injectable()
 export class CompraService {
-
   constructor(
     @InjectRepository(CompraEntity)
-    private compraRepo: Repository<CompraEntity>
-  ) { }
+    private compraRepo: Repository<CompraEntity>,
+  ) {}
 
   create(createCompraInput: CreateCompraInput) {
-    return 'This action adds a new compra';
+    return "This action adds a new compra";
   }
 
   findAll() {
-    return this.compraRepo.find()
+    return this.compraRepo.find();
   }
 
   findOne(id: number) {

@@ -1,7 +1,5 @@
-import { InputType, PartialType } from '@nestjs/graphql';
-import { InserirPessoaInputDto } from './ins.pessoa.input.dto';
+import { InputType, PartialType } from "@nestjs/graphql";
+import { InserirPessoaInputDto } from "./ins.pessoa.input.dto";
 
 @InputType()
-export class UpdatePessoaInputDto extends PartialType(InserirPessoaInputDto) {
-
-}
+export class UpdatePessoaInputDto extends PartialType(InserirPessoaInputDto) {}

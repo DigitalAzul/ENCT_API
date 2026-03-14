@@ -1,17 +1,17 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { _BaseObjectType } from '../../comuns/interfaces/_BaseObjectType';
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../comuns/types/ProdutoTypes';
-import { PRODUTO_CLASSIFICACAO_ENUN } from '../entities/produto-classificacoa/produto-classificacao-enum';
-import { GrupoProdutoSchema } from './grupoProduto.schema';
-import { SubGrupoProdutoSchema } from './grupoSubGrupoProduto.schema';
-import { MarcaProdutoSchema } from './marcaProduto.schema';
-import { SiglaUnidadeMedidaProdutoSchema } from './siglaUnidadeMedidaProduto.schema';
+import { Field, ObjectType } from "@nestjs/graphql";
+import { _BaseObjectType } from "../../comuns/interfaces/_BaseObjectType";
+import {
+  ESCALA_TEMRATURA_ENUM,
+  SITUACAO_PRODUTO,
+} from "../../comuns/types/ProdutoTypes";
+import { PRODUTO_CLASSIFICACAO_ENUN } from "../entities/produto-classificacoa/produto-classificacao-enum";
+import { GrupoProdutoSchema } from "./grupoProduto.schema";
+import { SubGrupoProdutoSchema } from "./grupoSubGrupoProduto.schema";
+import { MarcaProdutoSchema } from "./marcaProduto.schema";
+import { SiglaUnidadeMedidaProdutoSchema } from "./siglaUnidadeMedidaProduto.schema";
 
 @ObjectType()
 export class ProdutoSchema extends _BaseObjectType {
-
-
-
   @Field()
   produto_marcaId: string;
 
@@ -90,21 +90,18 @@ export class ProdutoSchema extends _BaseObjectType {
   @Field({ nullable: true })
   temp_min_conservacao?: number;
 
-
   @Field((_type) => GrupoProdutoSchema, { nullable: true })
-  grupo: Promise<GrupoProdutoSchema>
+  grupo: Promise<GrupoProdutoSchema>;
 
   @Field((_type) => SubGrupoProdutoSchema, { nullable: true })
-  subgrupo: Promise<SubGrupoProdutoSchema>
+  subgrupo: Promise<SubGrupoProdutoSchema>;
 
   @Field((_type) => MarcaProdutoSchema)
-  marca: Promise<MarcaProdutoSchema>
-
-
-  @Field((_type) => SiglaUnidadeMedidaProdutoSchema, { nullable: true })
-  sigla_primaria: Promise<SiglaUnidadeMedidaProdutoSchema>
+  marca: Promise<MarcaProdutoSchema>;
 
   @Field((_type) => SiglaUnidadeMedidaProdutoSchema, { nullable: true })
-  sigla_secundaria: Promise<SiglaUnidadeMedidaProdutoSchema>
+  sigla_primaria: Promise<SiglaUnidadeMedidaProdutoSchema>;
 
+  @Field((_type) => SiglaUnidadeMedidaProdutoSchema, { nullable: true })
+  sigla_secundaria: Promise<SiglaUnidadeMedidaProdutoSchema>;
 }

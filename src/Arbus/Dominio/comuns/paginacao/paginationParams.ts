@@ -1,35 +1,33 @@
 import { Field, InputType } from "@nestjs/graphql";
 
-
 @InputType()
 export class _Pagination {
-    @Field()
-    page: number;
-    @Field()
-    limit: number;
-    @Field()
-    size: number;
-    @Field()
-    offset: number;
+  @Field()
+  page: number;
+  @Field()
+  limit: number;
+  @Field()
+  size: number;
+  @Field()
+  offset: number;
 }
 
 @InputType()
 export class _Sorting {
-    @Field()
-    property: string;
-    @Field()
-    direction: string;
+  @Field()
+  property: string;
+  @Field()
+  direction: string;
 }
-
 
 @InputType()
 export class _Filtering {
-    @Field()
-    property: string;
-    @Field()
-    rule: string;
-    @Field()
-    value: string;
+  @Field()
+  property: string;
+  @Field()
+  rule: string;
+  @Field()
+  value: string;
 }
 
 // export const PaginationParams = createParamDecorator((data, ctx: ExecutionContext): Pagination => {

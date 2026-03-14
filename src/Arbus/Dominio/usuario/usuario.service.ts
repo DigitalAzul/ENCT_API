@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { UpdateUsuarioInput } from './dto/alt.usuario.input';
-import { InserirNovoUsuarioInput } from './dto/ins.usuario.input';
+import { Injectable } from "@nestjs/common";
+import { UpdateUsuarioInput } from "./dto/alt.usuario.input";
+import { InserirNovoUsuarioInput } from "./dto/ins.usuario.input";
 
 @Injectable()
 export class UsuarioService {
   create(createUsuarioInput: InserirNovoUsuarioInput) {
-    return 'This action adds a new usuario';
+    return "This action adds a new usuario";
   }
 
   findAll() {

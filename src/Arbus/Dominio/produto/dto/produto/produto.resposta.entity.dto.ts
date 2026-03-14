@@ -1,18 +1,16 @@
-
-import { Column, Entity } from 'typeorm';
-import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
-import { PRODUTO_CLASSIFICACAO_ENUN } from '../../entities/produto-classificacoa/produto-classificacao-enum';
-import { ProdutoSubGrupoEntity } from '../../entities/produto-grupo-sub/produto-sub-grupo.entity';
-import { ProdutoGrupoEntity } from '../../entities/produto-grupo/produto-grupo.entity';
-
-
+import { Column, Entity } from "typeorm";
+import { _BaseEntity } from "../../../comuns/interfaces/_BaseEntityType";
+import {
+  ESCALA_TEMRATURA_ENUM,
+  SITUACAO_PRODUTO,
+} from "../../../comuns/types/ProdutoTypes";
+import { PRODUTO_CLASSIFICACAO_ENUN } from "../../entities/produto-classificacoa/produto-classificacao-enum";
+import { ProdutoSubGrupoEntity } from "../../entities/produto-grupo-sub/produto-sub-grupo.entity";
+import { ProdutoGrupoEntity } from "../../entities/produto-grupo/produto-grupo.entity";
 
 @Entity()
 export class ProdutoRespostaEntityDto extends _BaseEntity {
-
   @Column()
-
   @Column()
   produto_marcaId: string;
 
@@ -55,31 +53,25 @@ export class ProdutoRespostaEntityDto extends _BaseEntity {
   @Column()
   peso_liquido: GLfloat;
 
-  @Column(
-    {
-      type: "enum",
-      enum: SITUACAO_PRODUTO,
-      default: SITUACAO_PRODUTO.ATIVO
-    }
-  )
+  @Column({
+    type: "enum",
+    enum: SITUACAO_PRODUTO,
+    default: SITUACAO_PRODUTO.ATIVO,
+  })
   situacao: SITUACAO_PRODUTO; // perguntar
 
-  @Column(
-    {
-      type: "enum",
-      enum: PRODUTO_CLASSIFICACAO_ENUN,
-      default: PRODUTO_CLASSIFICACAO_ENUN.REVENDA
-    }
-  )
+  @Column({
+    type: "enum",
+    enum: PRODUTO_CLASSIFICACAO_ENUN,
+    default: PRODUTO_CLASSIFICACAO_ENUN.REVENDA,
+  })
   classificacao: PRODUTO_CLASSIFICACAO_ENUN; // REVENDA | CONSUMO fazer outra tabela
 
-  @Column(
-    {
-      type: "enum",
-      enum: ESCALA_TEMRATURA_ENUM,
-      default: ESCALA_TEMRATURA_ENUM.NAO_APLICADO
-    },
-  )
+  @Column({
+    type: "enum",
+    enum: ESCALA_TEMRATURA_ENUM,
+    default: ESCALA_TEMRATURA_ENUM.NAO_APLICADO,
+  })
   escala_temperatura: ESCALA_TEMRATURA_ENUM;
 
   @Column({ nullable: true })
@@ -114,8 +106,4 @@ export class ProdutoRespostaEntityDto extends _BaseEntity {
 
   @Column({ nullable: true })
   temp_min_conservacao?: GLfloat;
-
-
-
-
 }

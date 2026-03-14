@@ -1,18 +1,14 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity } from 'typeorm';
-import { _BaseEntity } from '../../comuns/interfaces/_BaseEntityType';
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Column, Entity } from "typeorm";
+import { _BaseEntity } from "../../comuns/interfaces/_BaseEntityType";
 
-
-
-
-@Entity({ name: 'contato' })
+@Entity({ name: "contato" })
 export class ContatoEntity extends _BaseEntity {
-
   @Column()
   mercador_id: string;
 
   @Column()
-  tipo: "TELEFONE" | "EMAIL" | "WEB" | "SOCIAL"
+  tipo: "TELEFONE" | "EMAIL" | "WEB" | "SOCIAL";
 
   @Column()
   ddd: string;
@@ -30,15 +26,13 @@ export class ContatoEntity extends _BaseEntity {
   social: string;
 }
 
-
 @ObjectType()
 export class ContatoObjectTypeBase extends _BaseEntity {
-
   @Field()
   mercador_id: string;
 
   @Field()
-  tipo: "TELEFONE" | "EMAIL" | "WEB" | "SOCIAL"
+  tipo: "TELEFONE" | "EMAIL" | "WEB" | "SOCIAL";
 
   @Field()
   ddd: string;
@@ -57,12 +51,11 @@ export class ContatoObjectTypeBase extends _BaseEntity {
 }
 @ObjectType()
 export class ContatoObjectType extends _BaseEntity {
-
   @Field()
   mercador_id: string;
 
   @Field()
-  tipo: "TELEFONE" | "EMAIL" | "WEB" | "SOCIAL"
+  tipo: "TELEFONE" | "EMAIL" | "WEB" | "SOCIAL";
 
   @Field()
   ddd: string;

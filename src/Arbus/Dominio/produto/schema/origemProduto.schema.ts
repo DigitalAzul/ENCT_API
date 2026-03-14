@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class ClassificacaoProdutoSchema {
+export class OrigemProdutoSchema {
   @Field()
   value: string;
 

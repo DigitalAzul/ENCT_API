@@ -2,35 +2,26 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { _BaseObjectType } from "../../comuns/interfaces/_BaseObjectType";
 import { ProdutoSchema } from "../../produto/schema/produto.schema";
 
-
-
-
 @ObjectType()
 export class CompraSchema extends _BaseObjectType {
+  @Field()
+  produtos: ProdutoSchema;
 
-    @Field()
-    produtos: ProdutoSchema
+  @Field()
+  produtoId: string;
 
-    @Field()
-    produtoId: string;
+  @Field()
+  quantidade: number;
 
-    @Field()
-    quantidade: number;
+  @Field()
+  valor_esperado: number;
 
+  @Field()
+  valor_negociado: number;
 
-    @Field()
-    valor_esperado: number;
+  @Field()
+  desconto: number;
 
-
-    @Field()
-    valor_negociado: number;
-
-
-    @Field()
-    desconto: number;
-
-
-    @Field()
-    valor_total: number;
-
+  @Field()
+  valor_total: number;
 }

@@ -2,4 +2,3 @@ export enum PRODUTO_CLASSIFICACAO_ENUN {
   "CONSUMO" = "CONSUMO",
   "REVENDA" = "REVENDA",
 }
-

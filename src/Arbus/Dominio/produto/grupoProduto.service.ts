@@ -1,63 +1,59 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { GrupoProdutoRespostaEntityDto } from './dto/grupoProduto/grupoProdutoRespostaEntity.dto';
-import { EditaGrupoProdutoArgs, InserirGrupoProdutoArgs } from './dto/grupoProduto/inserirGrupoPtoduto.dto';
-import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
-
-
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { GrupoProdutoRespostaEntityDto } from "./dto/grupoProduto/grupoProdutoRespostaEntity.dto";
+import {
+  EditaGrupoProdutoArgs,
+  InserirGrupoProdutoArgs,
+} from "./dto/grupoProduto/inserirGrupoPtoduto.dto";
+import { ProdutoGrupoEntity } from "./entities/produto-grupo/produto-grupo.entity";
 
 @Injectable()
 export class GrupoProdutoService {
   constructor(
     @InjectRepository(ProdutoGrupoEntity)
     private produtoGrupoRepo: Repository<ProdutoGrupoEntity>,
-  ) { }
+  ) {}
 
-  async create(grupoProdutoDto: InserirGrupoProdutoArgs): Promise<GrupoProdutoRespostaEntityDto | null> {
+  async create(
+    grupoProdutoDto: InserirGrupoProdutoArgs,
+  ): Promise<GrupoProdutoRespostaEntityDto | null> {
     try {
-      const c = this.produtoGrupoRepo.create(grupoProdutoDto)
-      return this.produtoGrupoRepo.save(c)
+      const c = this.produtoGrupoRepo.create(grupoProdutoDto);
+      return this.produtoGrupoRepo.save(c);
     } catch (error) {
-      return null
+      return null;
     }
-
   }
 
   async findMany(): Promise<GrupoProdutoRespostaEntityDto[]> {
     try {
-      return this.produtoGrupoRepo.find()
+      return this.produtoGrupoRepo.find();
     } catch (error) {
-      return []
+      return [];
     }
-
   }
 
-  async findOneById(_id: string): Promise<GrupoProdutoRespostaEntityDto | null> {
+  async findOneById(
+    _id: string,
+  ): Promise<GrupoProdutoRespostaEntityDto | null> {
     try {
       const r = await this.produtoGrupoRepo.findOneOrFail({
         where: {
-          _id
-        }
-      })
+          _id,
+        },
+      });
 
-      return r
+      return r;
     } catch (error) {
-      return null
+      return null;
     }
-
   }
 
-  async update(id: string, dto: EditaGrupoProdutoArgs): Promise<Boolean> {
-    const a = await this.produtoGrupoRepo.update(
-      { _id: id },
-      { ...dto }
-    )
-    if (a) return true
+  async update(id: string, dto: EditaGrupoProdutoArgs): Promise<boolean> {
+    const a = await this.produtoGrupoRepo.update({ _id: id }, { ...dto });
+    if (a) return true;
 
-   return false
- }
-
-
-
+    return false;
+  }
 }

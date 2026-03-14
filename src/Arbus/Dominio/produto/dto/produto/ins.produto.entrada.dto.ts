@@ -1,12 +1,12 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { ESCALA_TEMRATURA_ENUM, SITUACAO_PRODUTO } from '../../../comuns/types/ProdutoTypes';
-import { PRODUTO_CLASSIFICACAO_ENUN } from '../../entities/produto-classificacoa/produto-classificacao-enum';
+import { Field, InputType } from "@nestjs/graphql";
+import {
+  ESCALA_TEMRATURA_ENUM,
+  SITUACAO_PRODUTO,
+} from "../../../comuns/types/ProdutoTypes";
+import { PRODUTO_CLASSIFICACAO_ENUN } from "../../entities/produto-classificacoa/produto-classificacao-enum";
 
 @InputType()
 export class InsProdutoEntraDto {
-
-
-
   @Field()
   produto_marcaId: string;
 
@@ -84,8 +84,4 @@ export class InsProdutoEntraDto {
 
   @Field({ nullable: true })
   temp_min_conservacao?: number;
-
-
-
-
 }

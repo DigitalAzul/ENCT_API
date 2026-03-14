@@ -1,5 +1,4 @@
-
 export interface XXSorting {
-    property: string;
-    direction: string;
+  property: string;
+  direction: string;
 }
