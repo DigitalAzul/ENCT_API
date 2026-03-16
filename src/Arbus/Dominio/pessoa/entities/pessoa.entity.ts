@@ -1,12 +1,12 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
-import { _BaseEntity } from '../../comuns/interfaces/_BaseEntityType';
-import { _BaseObjectType } from '../../comuns/interfaces/_BaseObjectType';
-import { EnderecoEntity } from './endereco.entity';
+import { Field, ObjectType } from "@nestjs/graphql";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { _BaseEntity } from "../../comuns/interfaces/_BaseEntityType";
+import { _BaseObjectType } from "../../comuns/interfaces/_BaseObjectType";
+import { EnderecoEntity } from "./endereco.entity";
 import {
   NaturezaJuridicaEntity,
   NaturezaJuridicaRespostaDto,
-} from './natureza_juridica.entity';
+} from "./natureza_juridica.entity";
 
 @Entity()
 export class PessoaEntityBase {
@@ -38,7 +38,7 @@ export class PessoaEntityBase {
   cnae: string;
 }
 
-@Entity({ name: 'pessoas' })
+@Entity({ name: "pessoas" })
 export class PessoasEntity extends _BaseEntity {
   @Column()
   filial: boolean;
@@ -67,13 +67,13 @@ export class PessoasEntity extends _BaseEntity {
   // RELACIONAMENTOS
   @ManyToOne(() => NaturezaJuridicaEntity, { eager: true })
   @JoinColumn({
-    name: 'tipo_natureza_juridica_id',
-    referencedColumnName: '_id',
+    name: "tipo_natureza_juridica_id",
+    referencedColumnName: "_id",
   })
   grupo: NaturezaJuridicaEntity;
 
   @OneToMany(() => EnderecoEntity, (endereco) => endereco.pessoa)
-  @JoinColumn({ referencedColumnName: 'pessoa_id' })
+  @JoinColumn({ referencedColumnName: "pessoa_id" })
   enderecos: EnderecoEntity[];
 }
 

@@ -1,35 +1,35 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { cadProdutoDto } from "./dto/produto/ins.produto.entrada.dto";
 
-import { InserirProdutoGrupoRespostaDto } from './dto/grupoProduto/inserirGrupoProdutoResposta.dto';
+import { InserirProdutoGrupoRespostaDto } from "./dto/grupoProduto/inserirGrupoProdutoResposta.dto";
 import {
   EditaGrupoProdutoArgs,
   InserirGrupoProdutoArgs,
-} from './dto/grupoProduto/inserirGrupoPtoduto.dto';
-import { UpdateProdutoInput } from './dto/produto/update-produto.input';
+} from "./dto/grupoProduto/inserirGrupoPtoduto.dto";
+import { UpdateProdutoInput } from "./dto/produto/update-produto.input";
 import {
   InserirSiglaUnidadeMedidaProdutoDto,
   SiglaUnidadeMedidaProdutoEditaArgs,
-} from './dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto';
+} from "./dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto";
 
-import { MarcaProdutoArgs } from './dto/marcaProduto/inserirMarcaProduto.dto';
+import { MarcaProdutoArgs } from "./dto/marcaProduto/inserirMarcaProduto.dto";
 import {
   InserirSubGrupoProdutoArgs,
   UpdateSubGrupoProdutoArgs,
-} from './dto/subGrupoProduto/inserirSubGrupoProduto.dto';
-import { GrupoProdutoService } from './grupoProduto.service';
-import { MarcaProdutoService } from './marcaProduto.service';
-import { ProdutoService } from './produto.service';
-import { ClassificacaoProdutoSchema } from './schema/classificacaoProduto.schema';
-import { GrupoProdutoSchema } from './schema/grupoProduto.schema';
-import { SubGrupoProdutoSchema } from './schema/grupoSubGrupoProduto.schema';
-import { MarcaProdutoSchema } from './schema/marcaProduto.schema';
-import { OrigemProdutoSchema } from './schema/origemProduto.schema';
-import { ProdutoSchema } from './schema/produto.schema';
-import { SiglaUnidadeMedidaProdutoSchema } from './schema/siglaUnidadeMedidaProduto.schema';
-import { SituacaoProdutoSchema } from './schema/situacaoProduto.schema';
-import { SiglaUnidadeMedidaProdutoService } from './siglaUnidadeMedidaProduto.service';
-import { SubGrupoProdutoService } from './subGrupoProduto.service';
+} from "./dto/subGrupoProduto/inserirSubGrupoProduto.dto";
+import { GrupoProdutoService } from "./grupoProduto.service";
+import { MarcaProdutoService } from "./marcaProduto.service";
+import { ProdutoService } from "./produto.service";
+import { ClassificacaoProdutoSchema } from "./schema/classificacaoProduto.schema";
+import { GrupoProdutoSchema } from "./schema/grupoProduto.schema";
+import { SubGrupoProdutoSchema } from "./schema/grupoSubGrupoProduto.schema";
+import { MarcaProdutoSchema } from "./schema/marcaProduto.schema";
+import { OrigemProdutoSchema } from "./schema/origemProduto.schema";
+import { ProdutoSchema } from "./schema/produto.schema";
+import { SiglaUnidadeMedidaProdutoSchema } from "./schema/siglaUnidadeMedidaProduto.schema";
+import { SituacaoProdutoSchema } from "./schema/situacaoProduto.schema";
+import { SiglaUnidadeMedidaProdutoService } from "./siglaUnidadeMedidaProduto.service";
+import { SubGrupoProdutoService } from "./subGrupoProduto.service";
 
 @Resolver(() => ProdutoSchema)
 export class ProdutoResolver {
@@ -42,36 +42,34 @@ export class ProdutoResolver {
     private readonly grupoProdutoService: GrupoProdutoService,
   ) { }
 
-  @Mutation(() => ProdutoSchema)
-  Produto_Novo(
-    @Args('insProdutoEntraDto') insProdutoEntraDto: InsProdutoEntraDto,
-  ) {
-    console.log('insProdutoEntraDto', insProdutoEntraDto);
-    return this.produtoService.inserirProduto(insProdutoEntraDto);
+  @Mutation(() => Boolean, { name: "CAD_Produto" })
+  Produto_Novo(@Args("cadProdutoDto") cadProdutoDto: cadProdutoDto) {
+    console.log("cadProdutoDto", cadProdutoDto);
+    return this.produtoService.inserirProduto(cadProdutoDto);
   }
 
-  @Query(() => [ProdutoSchema], { name: 'Produtos' })
+  @Query(() => [ProdutoSchema], { name: "Produtos" })
   async todos() {
-    console.log('asdasdasdasd');
+    console.log("asdasdasdasd");
     return await this.produtoService.ObterTodosProdutos();
   }
 
-  @Query(() => ProdutoSchema, { name: 'Produto_PorID' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  @Query(() => ProdutoSchema, { name: "Produto_PorID" })
+  findOne(@Args("id", { type: () => String }) id: string) {
     console.log(id);
     return {};
   }
 
   @Mutation(() => ProdutoSchema)
   async Produto_Edicao(
-    @Args('id', { type: () => String, name: 'id' }) id: string,
-    @Args('updateProdutoInput') updateProdutoInput: UpdateProdutoInput,
+    @Args("id", { type: () => String, name: "id" }) id: string,
+    @Args("updateProdutoInput") updateProdutoInput: UpdateProdutoInput,
   ) {
     return await this.produtoService.update(id, updateProdutoInput);
   }
 
   @Mutation(() => Boolean)
-  Produto_Remover(@Args('id', { type: () => String }) id: string) {
+  Produto_Remover(@Args("id", { type: () => String }) id: string) {
     console.log(id);
     return {};
   }
@@ -81,18 +79,18 @@ export class ProdutoResolver {
   // **************
   @Mutation(() => InserirProdutoGrupoRespostaDto)
   Produto_Grupo_Novo(
-    @Args('insProdutoGrupoDto') insProdutoGrupoInput: InserirGrupoProdutoArgs,
+    @Args("insProdutoGrupoDto") insProdutoGrupoInput: InserirGrupoProdutoArgs,
   ) {
     return this.grupoProdutoService.create(insProdutoGrupoInput);
   }
-  @Query(() => [GrupoProdutoSchema], { name: 'Produto_Grupos', nullable: true })
+  @Query(() => [GrupoProdutoSchema], { name: "Produto_Grupos", nullable: true })
   async findManyGrupoProduto() {
     return await this.grupoProdutoService.findMany();
   }
   @Mutation(() => Boolean)
   async ProdutoGrupo_Edicao(
-    @Args('id') id: string,
-    @Args('dados') dados: EditaGrupoProdutoArgs,
+    @Args("id") id: string,
+    @Args("dados") dados: EditaGrupoProdutoArgs,
   ) {
     return await this.grupoProdutoService.update(id, dados);
   }
@@ -102,20 +100,20 @@ export class ProdutoResolver {
   // **************
   @Mutation(() => Boolean)
   Produto_SubGrupo_Novo(
-    @Args('inserirSubGrupoProdutoArgs')
+    @Args("inserirSubGrupoProdutoArgs")
     inserirSubGrupoProdutoArgs: InserirSubGrupoProdutoArgs,
   ) {
     return this.subGrupoProdutoService.create(inserirSubGrupoProdutoArgs);
   }
   @Mutation(() => Boolean)
   async ProdutoSubGrupo_Edicao(
-    @Args('id') id: string,
-    @Args('dados') dados: UpdateSubGrupoProdutoArgs,
+    @Args("id") id: string,
+    @Args("dados") dados: UpdateSubGrupoProdutoArgs,
   ) {
     return await this.subGrupoProdutoService.update(id, dados);
   }
   @Query(() => [SubGrupoProdutoSchema], {
-    name: 'Produto_SubGrupos',
+    name: "Produto_SubGrupos",
     nullable: true,
   })
   async findManySubGrupoProduto() {
@@ -128,7 +126,7 @@ export class ProdutoResolver {
 
   @Mutation(() => Boolean)
   async CriarNovaSiglaDeUnidadeDeMedidaDeProduto(
-    @Args('InserirSiglaUnidadeMedidaProdutoDto')
+    @Args("InserirSiglaUnidadeMedidaProdutoDto")
     inserirSiglaUnidadeMedidaProdutoInput: InserirSiglaUnidadeMedidaProdutoDto,
   ) {
     return await this.siglaUnidadeMedidaProdutoService.create(
@@ -137,22 +135,22 @@ export class ProdutoResolver {
   }
   @Mutation(() => Boolean)
   async SiglaDeUnidadeDeMedidaDeProduto_Edicao(
-    @Args('id') id: string,
-    @Args('dados') dados: SiglaUnidadeMedidaProdutoEditaArgs,
+    @Args("id") id: string,
+    @Args("dados") dados: SiglaUnidadeMedidaProdutoEditaArgs,
   ) {
     return await this.siglaUnidadeMedidaProdutoService.update(id, dados);
   }
   @Query(() => SiglaUnidadeMedidaProdutoSchema, {
-    name: 'ListarSiglaUnidadeMedidaDeProduto',
+    name: "ListarSiglaUnidadeMedidaDeProduto",
     nullable: true,
   })
   async findOneSiglaUnidadeMedidaProduto(
-    @Args('_id', { type: () => String }) _id: string,
+    @Args("_id", { type: () => String }) _id: string,
   ) {
     return await this.siglaUnidadeMedidaProdutoService.findOneById(_id);
   }
   @Query(() => [SiglaUnidadeMedidaProdutoSchema], {
-    name: 'TodasSiglasUnidadeMedidaDeProduto',
+    name: "TodasSiglasUnidadeMedidaDeProduto",
     nullable: true,
   })
   async findManySiglaUnidadeMedidaProduto() {
@@ -167,18 +165,18 @@ export class ProdutoResolver {
   // **************
   @Mutation(() => Boolean)
   CriarNovaMarcaDeProduto(
-    @Args('InserirMarcaProdutoDto') inserirMarcaProdutoDto: MarcaProdutoArgs,
+    @Args("InserirMarcaProdutoDto") inserirMarcaProdutoDto: MarcaProdutoArgs,
   ) {
     return this.marcaProdutoService.create(inserirMarcaProdutoDto);
   }
-  @Query(() => [MarcaProdutoSchema], { name: 'Produto_Marcas', nullable: true })
+  @Query(() => [MarcaProdutoSchema], { name: "Produto_Marcas", nullable: true })
   async findManyMarcaProduto() {
     return await this.marcaProdutoService.findMany();
   }
   @Mutation(() => Boolean)
   async MarcaDeProduto_Edicao(
-    @Args('id') id: string,
-    @Args('dados') dados: MarcaProdutoArgs,
+    @Args("id") id: string,
+    @Args("dados") dados: MarcaProdutoArgs,
   ) {
     return await this.marcaProdutoService.update(id, dados);
   }
@@ -186,7 +184,7 @@ export class ProdutoResolver {
   // **************
   // SITUACAO PRODUTO
   // **************
-  @Query(() => [SituacaoProdutoSchema], { name: 'Produto_Situacao' })
+  @Query(() => [SituacaoProdutoSchema], { name: "Produto_Situacao" })
   findSituacaoProduto() {
     return this.produtoService.situacaoProduto();
   }
@@ -194,7 +192,7 @@ export class ProdutoResolver {
   // **************
   // CLASSIFICACAO PRODUTO
   // **************
-  @Query(() => [ClassificacaoProdutoSchema], { name: 'Produto_Classificacao' })
+  @Query(() => [ClassificacaoProdutoSchema], { name: "Produto_Classificacao" })
   findClassificacaoProduto() {
     return this.produtoService.classificacaoProduto();
   }
@@ -202,7 +200,7 @@ export class ProdutoResolver {
   // **************
   // ORIGEM PRODUTO
   // **************
-  @Query(() => [OrigemProdutoSchema], { name: 'Produto_Origem' })
+  @Query(() => [OrigemProdutoSchema], { name: "Produto_Origem" })
   findOrigemProduto() {
     return this.produtoService.origemProduto();
   }

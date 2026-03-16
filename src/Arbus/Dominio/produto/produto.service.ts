@@ -1,17 +1,17 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 
 import {
   ORIGEM_PRODUTO_ENUM,
   SITUACAO_PRODUTO,
-} from '../comuns/types/ProdutoTypes';
-import { InsProdutoEntraDto } from './dto/produto/ins.produto.entrada.dto';
-import { ProdutoRespostaEntityDto } from './dto/produto/produto.resposta.entity.dto';
-import { UpdateProdutoInput } from './dto/produto/update-produto.input';
-import { PRODUTO_CLASSIFICACAO_ENUN } from './entities/produto-classificacoa/produto-classificacao-enum';
-import { ProdutoGrupoEntity } from './entities/produto-grupo/produto-grupo.entity';
-import { ProdutoEntity } from './entities/produto/produto.entity';
+} from "../comuns/types/ProdutoTypes";
+import { InsProdutoEntraDto } from "./dto/produto/ins.produto.entrada.dto";
+import { ProdutoRespostaEntityDto } from "./dto/produto/produto.resposta.entity.dto";
+import { UpdateProdutoInput } from "./dto/produto/update-produto.input";
+import { PRODUTO_CLASSIFICACAO_ENUN } from "./entities/produto-classificacoa/produto-classificacao-enum";
+import { ProdutoGrupoEntity } from "./entities/produto-grupo/produto-grupo.entity";
+import { ProdutoEntity } from "./entities/produto/produto.entity";
 
 @Injectable()
 export class ProdutoService {
@@ -24,10 +24,15 @@ export class ProdutoService {
 
   async inserirProduto(
     insProdutoEntraDto: InsProdutoEntraDto,
-  ): Promise<ProdutoRespostaEntityDto> {
+  ): Promise<boolean> {
     const c = this.produtoRepo.create(insProdutoEntraDto);
-
-    return this.produtoRepo.save(c);
+    try {
+      await this.produtoRepo.save(c);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   }
   async ObterTodosProdutos(): Promise<ProdutoRespostaEntityDto[]> {
     const a = await this.produtoRepo.find();

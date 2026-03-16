@@ -1,17 +1,18 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { _BaseEntity } from '../../../comuns/interfaces/_BaseEntityType';
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { _BaseEntity } from "../../../comuns/interfaces/_BaseEntityType";
 import {
   ESCALA_TEMRATURA_ENUM,
+  ORIGEM_PRODUTO_ENUM,
   SITUACAO_PRODUTO,
-} from '../../../comuns/types/ProdutoTypes';
-import { PessoasEntity } from '../../../pessoa/entities/pessoa.entity';
-import { PRODUTO_CLASSIFICACAO_ENUN } from '../produto-classificacoa/produto-classificacao-enum';
-import { ProdutoSubGrupoEntity } from '../produto-grupo-sub/produto-sub-grupo.entity';
-import { ProdutoGrupoEntity } from '../produto-grupo/produto-grupo.entity';
-import { ProdutoMarcaEntity } from '../produto-marca/produto-marca.entity';
-import { ProdutoUnidadeSiglaEntity } from '../produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity';
+} from "../../../comuns/types/ProdutoTypes";
+import { PessoasEntity } from "../../../pessoa/entities/pessoa.entity";
+import { PRODUTO_CLASSIFICACAO_ENUN } from "../produto-classificacoa/produto-classificacao-enum";
+import { ProdutoSubGrupoEntity } from "../produto-grupo-sub/produto-sub-grupo.entity";
+import { ProdutoGrupoEntity } from "../produto-grupo/produto-grupo.entity";
+import { ProdutoMarcaEntity } from "../produto-marca/produto-marca.entity";
+import { ProdutoUnidadeSiglaEntity } from "../produto-sigla-unidade-medida/produto-sigla-unidade-medida.entity";
 
-@Entity({ name: 'produto' })
+@Entity({ name: "produto" })
 export class ProdutoEntity extends _BaseEntity {
   @Column()
   produto_marcaId: string;
@@ -28,7 +29,7 @@ export class ProdutoEntity extends _BaseEntity {
   @Column()
   sigla_unidade_primariaId: string;
 
-  @Column({ type: 'numeric' })
+  @Column({ type: "numeric" })
   fator_conversao_primaria: number; // define o valor de multiplacação entre unidades primaria
 
   @Column()
@@ -37,7 +38,7 @@ export class ProdutoEntity extends _BaseEntity {
   @Column({ nullable: true })
   sigla_unidade_secundariaId?: string;
 
-  @Column({ type: 'numeric', nullable: true })
+  @Column({ type: "numeric", nullable: true })
   fator_conversao_secundaria?: number; // define o valor de multiplacação entre unidades secundaria
 
   @Column()
@@ -52,28 +53,35 @@ export class ProdutoEntity extends _BaseEntity {
   @Column()
   referencia: string; // perguntar
 
-  @Column({ type: 'numeric' })
+  @Column({ type: "numeric" })
   peso_bruto: number;
 
-  @Column({ type: 'numeric' })
+  @Column({ type: "numeric" })
   peso_liquido: number;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: SITUACAO_PRODUTO,
     default: SITUACAO_PRODUTO.ATIVO,
   })
   situacao: SITUACAO_PRODUTO; // perguntar
 
   @Column({
-    type: 'enum',
+    type: "enum",
+    enum: ORIGEM_PRODUTO_ENUM,
+    default: ORIGEM_PRODUTO_ENUM.NACIONAL,
+  })
+  origem: ORIGEM_PRODUTO_ENUM;
+
+  @Column({
+    type: "enum",
     enum: PRODUTO_CLASSIFICACAO_ENUN,
     default: PRODUTO_CLASSIFICACAO_ENUN.REVENDA,
   })
   classificacao: PRODUTO_CLASSIFICACAO_ENUN; // REVENDA | CONSUMO fazer outra tabela
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: ESCALA_TEMRATURA_ENUM,
     default: ESCALA_TEMRATURA_ENUM.NAO_APLICADO,
   })
@@ -100,42 +108,42 @@ export class ProdutoEntity extends _BaseEntity {
   @Column({ nullable: true })
   imagem?: string;
 
-  @Column({ type: 'numeric', nullable: true })
+  @Column({ type: "numeric", nullable: true })
   temp_max_conservacao?: number;
 
-  @Column({ type: 'numeric', nullable: true })
+  @Column({ type: "numeric", nullable: true })
   temp_min_conservacao?: number;
 
   // RELACIONAMENTOS
   @ManyToOne(() => ProdutoGrupoEntity, { eager: true })
-  @JoinColumn({ name: 'grupoId', referencedColumnName: '_id' })
+  @JoinColumn({ name: "grupoId", referencedColumnName: "_id" })
   grupo: ProdutoGrupoEntity;
 
   @ManyToOne(() => ProdutoSubGrupoEntity, { eager: true })
-  @JoinColumn({ name: 'sub_grupoId', referencedColumnName: '_id' })
+  @JoinColumn({ name: "sub_grupoId", referencedColumnName: "_id" })
   subgrupo: ProdutoSubGrupoEntity;
 
   //@OneToOne(() => ProdutoMarcaEntity, { eager: true })
   @ManyToOne(() => ProdutoMarcaEntity, { eager: true })
-  @JoinColumn({ name: 'produto_marcaId', referencedColumnName: '_id' })
+  @JoinColumn({ name: "produto_marcaId", referencedColumnName: "_id" })
   marca: ProdutoMarcaEntity;
 
   // UNIDADE DE MEDIDA
   @ManyToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
-  @JoinColumn({ name: 'sigla_unidade_primariaId', referencedColumnName: '_id' })
+  @JoinColumn({ name: "sigla_unidade_primariaId", referencedColumnName: "_id" })
   sigla_primaria: ProdutoUnidadeSiglaEntity;
 
   @ManyToOne(() => ProdutoUnidadeSiglaEntity, { eager: true })
   @JoinColumn({
-    name: 'sigla_unidade_secundariaId',
-    referencedColumnName: '_id',
+    name: "sigla_unidade_secundariaId",
+    referencedColumnName: "_id",
   })
   sigla_secundaria: ProdutoUnidadeSiglaEntity;
 
   @ManyToOne(() => PessoasEntity, { eager: true })
   @JoinColumn({
-    name: 'fornecedorId',
-    referencedColumnName: '_id',
+    name: "fornecedorId",
+    referencedColumnName: "_id",
   })
   fornecedor: PessoasEntity;
   // RELACIONAMENTOS
