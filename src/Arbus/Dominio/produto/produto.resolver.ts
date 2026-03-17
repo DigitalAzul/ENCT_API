@@ -1,10 +1,9 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { cadProdutoDto } from "./dto/produto/ins.produto.entrada.dto";
 
-import { InserirProdutoGrupoRespostaDto } from "./dto/grupoProduto/inserirGrupoProdutoResposta.dto";
 import {
+  cadProdutoGrupoArgs,
   EditaGrupoProdutoArgs,
-  InserirGrupoProdutoArgs,
 } from "./dto/grupoProduto/inserirGrupoPtoduto.dto";
 import { UpdateProdutoInput } from "./dto/produto/update-produto.input";
 import {
@@ -12,9 +11,9 @@ import {
   SiglaUnidadeMedidaProdutoEditaArgs,
 } from "./dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto";
 
-import { MarcaProdutoArgs } from "./dto/marcaProduto/inserirMarcaProduto.dto";
+import { cadProdutoMarcaArgs } from "./dto/marcaProduto/inserirMarcaProduto.dto";
 import {
-  InserirSubGrupoProdutoArgs,
+  CadSubGrupoProdutoArgs,
   UpdateSubGrupoProdutoArgs,
 } from "./dto/subGrupoProduto/inserirSubGrupoProduto.dto";
 import { GrupoProdutoService } from "./grupoProduto.service";
@@ -77,16 +76,21 @@ export class ProdutoResolver {
   // **************
   // GRUPO DE PRODUTO
   // **************
-  @Mutation(() => InserirProdutoGrupoRespostaDto)
+  @Mutation(() => Boolean, { name: "CAD_ProdutoGrupo" })
   Produto_Grupo_Novo(
-    @Args("insProdutoGrupoDto") insProdutoGrupoInput: InserirGrupoProdutoArgs,
+    @Args("cadProdutoGrupo") cadProdutoGrupo: cadProdutoGrupoArgs,
   ) {
-    return this.grupoProdutoService.create(insProdutoGrupoInput);
+    return this.grupoProdutoService.create(cadProdutoGrupo);
   }
-  @Query(() => [GrupoProdutoSchema], { name: "Produto_Grupos", nullable: true })
+
+  @Query(() => [GrupoProdutoSchema], {
+    name: "LST_Produto_Grupos",
+    nullable: true,
+  })
   async findManyGrupoProduto() {
     return await this.grupoProdutoService.findMany();
   }
+
   @Mutation(() => Boolean)
   async ProdutoGrupo_Edicao(
     @Args("id") id: string,
@@ -98,13 +102,14 @@ export class ProdutoResolver {
   // **************
   // SUB GRUPO DE PRODUTO
   // **************
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { name: "CAD_Produto_SubGrupo" })
   Produto_SubGrupo_Novo(
-    @Args("inserirSubGrupoProdutoArgs")
-    inserirSubGrupoProdutoArgs: InserirSubGrupoProdutoArgs,
+    @Args("cadSubGrupoProdutoArgs")
+    cadSubGrupoProdutoArgs: CadSubGrupoProdutoArgs,
   ) {
-    return this.subGrupoProdutoService.create(inserirSubGrupoProdutoArgs);
+    return this.subGrupoProdutoService.create(cadSubGrupoProdutoArgs);
   }
+
   @Mutation(() => Boolean)
   async ProdutoSubGrupo_Edicao(
     @Args("id") id: string,
@@ -163,11 +168,11 @@ export class ProdutoResolver {
   // **************
   // MARCA PRODUTO
   // **************
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { name: "CAD_Produto_Marca" })
   CriarNovaMarcaDeProduto(
-    @Args("InserirMarcaProdutoDto") inserirMarcaProdutoDto: MarcaProdutoArgs,
+    @Args("cadProdutoMarcaArgs") cadProdutoMarcaArgs: cadProdutoMarcaArgs,
   ) {
-    return this.marcaProdutoService.create(inserirMarcaProdutoDto);
+    return this.marcaProdutoService.create(cadProdutoMarcaArgs);
   }
   @Query(() => [MarcaProdutoSchema], { name: "Produto_Marcas", nullable: true })
   async findManyMarcaProduto() {
@@ -176,7 +181,7 @@ export class ProdutoResolver {
   @Mutation(() => Boolean)
   async MarcaDeProduto_Edicao(
     @Args("id") id: string,
-    @Args("dados") dados: MarcaProdutoArgs,
+    @Args("dados") dados: cadProdutoMarcaArgs,
   ) {
     return await this.marcaProdutoService.update(id, dados);
   }

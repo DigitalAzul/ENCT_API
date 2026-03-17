@@ -11,7 +11,7 @@ export class InserirGrupoProdutoDto extends _BaseObjectType {
 }
 
 @InputType()
-export class InserirGrupoProdutoArgs {
+export class cadProdutoGrupoArgs {
   @Field()
   titulo: string;
 

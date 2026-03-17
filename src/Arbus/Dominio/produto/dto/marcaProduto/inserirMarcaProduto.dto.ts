@@ -20,4 +20,4 @@ export class InserirMarcaProdutoDto extends _BaseObjectType {
 }
 
 @InputType()
-export class MarcaProdutoArgs extends PartialType(MarcaProdutoBASE) {}
+export class cadProdutoMarcaArgs extends PartialType(MarcaProdutoBASE) { }

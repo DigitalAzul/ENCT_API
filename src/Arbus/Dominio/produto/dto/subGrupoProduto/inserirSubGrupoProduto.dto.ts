@@ -11,7 +11,7 @@ export class SubGrupoProdutoDto extends _BaseObjectType {
 }
 
 @InputType()
-export class InserirSubGrupoProdutoArgs {
+export class CadSubGrupoProdutoArgs {
   @Field()
   titulo: string;
 
@@ -21,5 +21,5 @@ export class InserirSubGrupoProdutoArgs {
 
 @InputType()
 export class UpdateSubGrupoProdutoArgs extends PartialType(
-  InserirSubGrupoProdutoArgs,
+  CadSubGrupoProdutoArgs,
 ) {}

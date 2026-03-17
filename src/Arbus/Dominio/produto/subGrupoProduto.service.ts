@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import {
-  InserirSubGrupoProdutoArgs,
+  CadSubGrupoProdutoArgs,
   UpdateSubGrupoProdutoArgs,
 } from "./dto/subGrupoProduto/inserirSubGrupoProduto.dto";
 import { SubGrupoProdutoRespostaEntityDto } from "./dto/subGrupoProduto/subGrupoProdutoRespostaEntity.dto";
@@ -16,15 +16,16 @@ export class SubGrupoProdutoService {
   ) {}
 
   async create(
-    subGrupoProdutoDto: InserirSubGrupoProdutoArgs,
+    CadSubGrupoProdutoArgs: CadSubGrupoProdutoArgs,
   ): Promise<boolean> {
     try {
-      const c = this.produtoSubGrupoRepo.create(subGrupoProdutoDto);
+      const c = this.produtoSubGrupoRepo.create(CadSubGrupoProdutoArgs);
       const s = await this.produtoSubGrupoRepo.save(c);
       if (s) return true;
 
       return false;
     } catch (error) {
+      console.log("Erro ao cadastrar Sub Grupo", error);
       return false;
     }
   }

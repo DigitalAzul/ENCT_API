@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { GrupoProdutoRespostaEntityDto } from "./dto/grupoProduto/grupoProdutoRespostaEntity.dto";
 import {
   EditaGrupoProdutoArgs,
-  InserirGrupoProdutoArgs,
+  cadProdutoGrupoArgs,
 } from "./dto/grupoProduto/inserirGrupoPtoduto.dto";
 import { ProdutoGrupoEntity } from "./entities/produto-grupo/produto-grupo.entity";
 
@@ -15,14 +15,14 @@ export class GrupoProdutoService {
     private produtoGrupoRepo: Repository<ProdutoGrupoEntity>,
   ) {}
 
-  async create(
-    grupoProdutoDto: InserirGrupoProdutoArgs,
-  ): Promise<GrupoProdutoRespostaEntityDto | null> {
+  async create(grupoProdutoDto: cadProdutoGrupoArgs): Promise<boolean> {
+    const c = this.produtoGrupoRepo.create(grupoProdutoDto);
     try {
-      const c = this.produtoGrupoRepo.create(grupoProdutoDto);
-      return this.produtoGrupoRepo.save(c);
+      await this.produtoGrupoRepo.save(c);
+      return true;
     } catch (error) {
-      return null;
+      console.log(error);
+      return false;
     }
   }
 

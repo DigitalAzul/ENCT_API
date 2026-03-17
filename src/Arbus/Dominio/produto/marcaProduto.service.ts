@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { MarcaProdutoArgs } from "./dto/marcaProduto/inserirMarcaProduto.dto";
+import { cadProdutoMarcaArgs } from "./dto/marcaProduto/inserirMarcaProduto.dto";
 import { MarcaProdutoRespostaEntityDto } from "./dto/marcaProduto/marcaProduto.resposta.entity.dto";
 import { ProdutoMarcaEntity } from "./entities/produto-marca/produto-marca.entity";
 
@@ -12,7 +12,7 @@ export class MarcaProdutoService {
     private produtoMarcaRepo: Repository<ProdutoMarcaEntity>,
   ) {}
 
-  async create(inserirMarcaProdutoDto: MarcaProdutoArgs): Promise<boolean> {
+  async create(inserirMarcaProdutoDto: cadProdutoMarcaArgs): Promise<boolean> {
     try {
       const c = this.produtoMarcaRepo.create(inserirMarcaProdutoDto);
       const s = await this.produtoMarcaRepo.save(c);
@@ -20,6 +20,7 @@ export class MarcaProdutoService {
 
       return false;
     } catch (error) {
+      console.log("erro ao cadastrar Marca de Produto", error);
       return false;
     }
   }
@@ -28,6 +29,7 @@ export class MarcaProdutoService {
     try {
       return this.produtoMarcaRepo.find();
     } catch (error) {
+      console.log("erro ao cadastrar Marca de Produto", error);
       return [];
     }
   }
@@ -44,11 +46,12 @@ export class MarcaProdutoService {
 
       return r;
     } catch (error) {
+      console.log("erro ao cadastrar Marca de Produto", error);
       return null;
     }
   }
 
-  async update(id: string, dto: MarcaProdutoArgs): Promise<boolean> {
+  async update(id: string, dto: cadProdutoMarcaArgs): Promise<boolean> {
     const a = await this.produtoMarcaRepo.update({ _id: id }, { ...dto });
     if (a) return true;
 
