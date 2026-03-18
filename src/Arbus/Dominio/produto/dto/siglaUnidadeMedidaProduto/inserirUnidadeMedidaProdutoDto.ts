@@ -10,7 +10,7 @@ export class InserirSiglaUnidadeMedidaProdutoDto extends _BaseObjectType {
   descricao: string;
 }
 @InputType()
-export class SiglaUnidadeMedidaProdutoArgs {
+export class cadProdutoSiglaUnidadeMedidaArgs {
   @Field()
   sigla: string;
 
@@ -20,5 +20,5 @@ export class SiglaUnidadeMedidaProdutoArgs {
 
 @InputType()
 export class SiglaUnidadeMedidaProdutoEditaArgs extends PartialType(
-  SiglaUnidadeMedidaProdutoArgs,
+  cadProdutoSiglaUnidadeMedidaArgs,
 ) {}

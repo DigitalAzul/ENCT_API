@@ -7,7 +7,7 @@ import {
 } from "./dto/grupoProduto/inserirGrupoPtoduto.dto";
 import { UpdateProdutoInput } from "./dto/produto/update-produto.input";
 import {
-  InserirSiglaUnidadeMedidaProdutoDto,
+  cadProdutoSiglaUnidadeMedidaArgs,
   SiglaUnidadeMedidaProdutoEditaArgs,
 } from "./dto/siglaUnidadeMedidaProduto/inserirUnidadeMedidaProdutoDto";
 
@@ -47,10 +47,10 @@ export class ProdutoResolver {
     return this.produtoService.inserirProduto(cadProdutoDto);
   }
 
-  @Query(() => [ProdutoSchema], { name: "Produtos" })
-  async todos() {
+  @Query(() => [ProdutoSchema], { name: "FLT_Produtos" })
+  async produtosFiltrado() {
     console.log("asdasdasdasd");
-    return await this.produtoService.ObterTodosProdutos();
+    return await this.produtoService.ProdutosFiltrado();
   }
 
   @Query(() => ProdutoSchema, { name: "Produto_PorID" })
@@ -129,13 +129,13 @@ export class ProdutoResolver {
   // SIGLA UNIDADE DE MEDIDA DE PRODUTO
   // **************
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, { name: "CAD_Produto_Sigla_Unidade_Medida" })
   async CriarNovaSiglaDeUnidadeDeMedidaDeProduto(
-    @Args("InserirSiglaUnidadeMedidaProdutoDto")
-    inserirSiglaUnidadeMedidaProdutoInput: InserirSiglaUnidadeMedidaProdutoDto,
+    @Args("cadProdutoSiglaUnidadeMedidaArgs")
+    cadProdutoSiglaUnidadeMedidaArgs: cadProdutoSiglaUnidadeMedidaArgs,
   ) {
     return await this.siglaUnidadeMedidaProdutoService.create(
-      inserirSiglaUnidadeMedidaProdutoInput,
+      cadProdutoSiglaUnidadeMedidaArgs,
     );
   }
   @Mutation(() => Boolean)

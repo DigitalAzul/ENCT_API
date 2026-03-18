@@ -34,9 +34,8 @@ export class ProdutoService {
       return false;
     }
   }
-  async ObterTodosProdutos(): Promise<ProdutoRespostaEntityDto[]> {
+  async ProdutosFiltrado(): Promise<ProdutoRespostaEntityDto[]> {
     const a = await this.produtoRepo.find();
-    console.log(a);
     return a;
   }
   async ObterProduto(_id: string): Promise<ProdutoRespostaEntityDto | null> {
