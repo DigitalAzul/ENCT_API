@@ -145,23 +145,11 @@ export class ProdutoResolver {
   ) {
     return await this.siglaUnidadeMedidaProdutoService.update(id, dados);
   }
-  @Query(() => SiglaUnidadeMedidaProdutoSchema, {
-    name: "ListarSiglaUnidadeMedidaDeProduto",
-    nullable: true,
-  })
-  async findOneSiglaUnidadeMedidaProduto(
-    @Args("_id", { type: () => String }) _id: string,
-  ) {
-    return await this.siglaUnidadeMedidaProdutoService.findOneById(_id);
-  }
+
   @Query(() => [SiglaUnidadeMedidaProdutoSchema], {
-    name: "TodasSiglasUnidadeMedidaDeProduto",
-    nullable: true,
+    name: "LST_SiglaUnidaMedidaProduto",
   })
   async findManySiglaUnidadeMedidaProduto() {
-    // async function sleep(ms: number) {
-    //   return new Promise((resolve) => setTimeout(resolve, ms));
-    // }
     return await this.siglaUnidadeMedidaProdutoService.findMany();
   }
 
@@ -174,8 +162,8 @@ export class ProdutoResolver {
   ) {
     return this.marcaProdutoService.create(cadProdutoMarcaArgs);
   }
-  @Query(() => [MarcaProdutoSchema], { name: "Produto_Marcas", nullable: true })
-  async findManyMarcaProduto() {
+  @Query(() => [MarcaProdutoSchema], { name: "LST_Produto_Marcas" })
+  async listMarcaProduto() {
     return await this.marcaProdutoService.findMany();
   }
   @Mutation(() => Boolean)
