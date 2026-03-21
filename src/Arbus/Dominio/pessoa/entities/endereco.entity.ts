@@ -13,8 +13,15 @@ enum TIPO_ENDERECO {
 
 @Entity({ name: "endereco" })
 export class EnderecoEntity extends _BaseEntity {
-  @Column()
-  titulo: string;
+  @Column({
+    type: "enum",
+    enum: TIPO_ENDERECO,
+    default: TIPO_ENDERECO.GERAL,
+  })
+  tipo: TIPO_ENDERECO;
+
+  // @Column()
+  // titulo: string;
 
   @Column()
   cep: string;
@@ -47,16 +54,16 @@ export class EnderecoEntity extends _BaseEntity {
   longitude: string;
 
   @Column()
-  pessoa_id: string;
+  pessoafj_id: string;
 
   @ManyToOne(() => PessoasEntity, (pessoa) => pessoa.enderecos)
-  pessoa: PessoasEntity;
+  pessoafj: PessoasEntity;
 }
 
 @ObjectType()
 export class EnderecoBase {
   @Field()
-  titulo: string;
+  tipo: TIPO_ENDERECO;
 
   @Field()
   cep: string;
@@ -95,7 +102,7 @@ export class EnderecoBase {
 @ObjectType()
 export class EnderecoBaseComCabecalho extends _BaseObjectType {
   @Field()
-  titulo: string;
+  tipo: TIPO_ENDERECO;
 
   @Field()
   cep: string;
@@ -137,7 +144,7 @@ export class EnderecoDto extends EnderecoBaseComCabecalho {}
 @InputType()
 export class EnderecoInputBase {
   @Field()
-  titulo: string;
+  tipo: TIPO_ENDERECO;
 
   @Field()
   cep: string;

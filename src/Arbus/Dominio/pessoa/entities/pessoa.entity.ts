@@ -70,9 +70,9 @@ export class PessoasEntity extends _BaseEntity {
     name: "tipo_natureza_juridica_id",
     referencedColumnName: "_id",
   })
-  grupo: NaturezaJuridicaEntity;
+  natureza: NaturezaJuridicaEntity;
 
-  @OneToMany(() => EnderecoEntity, (endereco) => endereco.pessoa)
+  @OneToMany(() => EnderecoEntity, (endereco) => endereco.pessoafj)
   @JoinColumn({ referencedColumnName: "pessoa_id" })
   enderecos: EnderecoEntity[];
 }
@@ -104,7 +104,7 @@ export class PessoaObjectTypeBase {
   tipo_natureza_juridica_id: string;
 
   @Field()
-  tipo_natureza_juridica: NaturezaJuridicaRespostaDto;
+  natureza: NaturezaJuridicaRespostaDto;
 
   @Field()
   cnae: string;
@@ -134,7 +134,7 @@ export class PessoaObjectTypeBaseComCabecalho extends _BaseObjectType {
   tipo_natureza_juridica_id: string;
 
   @Field()
-  tipo_natureza_juridica: NaturezaJuridicaRespostaDto;
+  natureza: NaturezaJuridicaRespostaDto;
 
   @Field()
   cnae: string;
